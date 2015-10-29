@@ -5,44 +5,44 @@ category: FAQ
 title: "Comparison to Scala"
 ---
 
-# Comparison to Scala
+# 对比Scala
 
-The two main design goals for Kotlin are:
+设计Kotlin语言有两主要的目的:
 
-* Make compilation at least as fast as Java
-* Keep useful level of expressiveness while maintaining the language simple as possible
+* 使编译至少和Java一样快
+* 保证表达到位的同时，语言足够简洁
 
-Taking this into account, if you are happy with Scala, you probably do not need Kotlin
+在这考虑一下, 如果你的Scala已相当得心应手, 或许你不需要再学习Kotlin
 
-## What Scala has that Kotlin does not
+## Scala有什么Kotlin没有的
 
-* Implicit conversions, parameters, etc
-    * In Scala, sometimes it's very hard to tell what's happening in your code without using a debugger, because too many implicits get into the picture
-    * To enrich your types with functions in Kotlin use [Extension functions](extensions.html).
-* Overridable type members
-* Path-dependent types
-* Macros
-* Existential types
-    * [Type projections](generics.html#type-projections) are a very special case
-* Complicated logic for initialization of traits
-    * See [Classes and Inheritance](classes.html)
-* Custom symbolic operations
-    * See [Operator overloading](operator-overloading.html)
-* Built-in XML
-    * See [Type-safe Groovy-style builders](type-safe-builders.html)
+* 隐式转换,标量参数, 等等
+    * 在Scala中, 由于画面中有太多的隐式转换，有时不使用debugger，会很难弄清楚code具体发生了什么
+    * 为了达到功能的多样性，在Kotlin中要使用[扩展函数](extensions.html).
+* 可重写的成员类型
+* 路径依赖类型
+* 宏
+* 存在类型
+    * [类型预测](generics.html#type-projections) 是一种非常特殊的情况
+* 特性初始化的复杂逻辑
+    * 参照 [类与继承](classes.html)
+* 自定义符号运算
+    * 参照 [操作符重载](operator-overloading.html)
+* 嵌入式XML
+    * 参照 [类型安全 Groovy风格 builders](type-safe-builders.html)
 
-Things that may be added to Kotlin later:
+未来Kotlin中可能要增加的:
 
-* Structural types
-* Value types
+* 结构类型
+* Value类型
 * Yield operator
 * Actors
-* Parallel collections
+* 并行集合
 
-## What Kotlin has that Scala does not
+## Kotlin有什么Scala没有的
 
-* [Zero-overhead null-safety](null-safety.html)
-    * Scala has Option, which is a syntactic and run-time wrapper
-* [Smart casts](typecasts.html)
-* [Kotlin's Inline functions facilitate Nonlocal jumps](inline-functions.html#inline-functions)
-* [First-class delegation](delegation.html). Also implemented via 3rd party plugin: Autoproxy
+* [零开销 空安全](null-safety.html)
+    * Scala有“语法和运行时包装”选项
+* [智能转换](typecasts.html)
+* [Kotlin的内联函数助力非局部跳跃](inline-functions.html#inline-functions)
+* [第一类 授权](delegation.html). 同时通过实施第三方插件: Autoproxy
