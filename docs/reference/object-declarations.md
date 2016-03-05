@@ -7,13 +7,13 @@ title: "Object Expressions and Declarations"
 
 # 对象表达式和对象声明
 
-有些时候我们需要创造一个对象对某些类做稍微改变，而不用为了它明确定义一个新的子类。
-Java把这处理为*匿名内部类*。
-在Kotlin稍微归纳为*对象表达式*和*对象声明*。
+有些时候我们需要创建一个对某些类做了轻微改变的一个对象，而不用为了它显式地定义一个新的子类。
+Java把这种情况处理为*匿名内部类*。
+在Kotlin稍微推广了这个概念，称它们为*对象表达式*和*对象声明*。
 
 ## 对象表达式
 
-创建一个继承自一些类型的内部类的对象，我们可以这么写：
+创建一个继承自某些类型的匿名类的对象，我们会这么写：
 
 ``` kotlin
 window.addMouseListener(object : MouseAdapter() {
@@ -43,7 +43,7 @@ val ab = object : A(1), B {
 }
 ```
 
-或许如果我们需要“仅仅是一个对象”,没有父类的，我们可以简单这么写：
+或许，我们需要“仅仅是一个对象”,没有不平凡的父类（~~比如马云王健林~~），那么我们可以简单地写为：
 
 ``` kotlin
 val adHoc = object {
@@ -53,7 +53,7 @@ val adHoc = object {
 print(adHoc.x + adHoc.y)
 ```
 
-就像Java的匿名内部类，在对象表达里代码可以使变量与作用域联系起来
+就像Java的匿名内部类，在对象表达里代码可以访问外围的作用域
 （与Java不同的是，这不是受final变量限制的。）
 
 ``` kotlin
@@ -76,7 +76,7 @@ fun countClicks(window: JComponent) {
 
 ## 对象声明
 
-[单例模式](http://en.wikipedia.org/wiki/Singleton_pattern)是一种非常有用的模式，而在Kotilin（在Scala之后）中使得单例模式很容易声明。
+[单例模式](http://en.wikipedia.org/wiki/Singleton_pattern)是一种非常有用的模式，而在Kotilin（在Scala之后）中很容易就能声明一个单例。
 
 ``` kotlin
 object DataProviderManager {
@@ -119,7 +119,7 @@ class MyClass {
 }
 ```
 
-伴生对象的成员可以被称为使用类名称作为限定符：
+伴生对象的成员可以使用类名称作为限定符来调用：
 
 ``` kotlin
 val instance = MyClass.create()
@@ -136,8 +136,8 @@ class MyClass {
 val x = MyClass.Companion
 ```
 
-记住，虽然伴生对象的成员在其他语言中看起来像静态成员，但在运行时它们
-仍然是实体的实例成员，而且比如说能实现接口：
+注意，虽然伴生对象的成员在其他语言中看起来像静态成员，但在运行时它们
+仍然是实体的实例成员，举例来说，我们能用它实现接口：
 
 ``` kotlin
 interface Factory<T> {
@@ -152,22 +152,22 @@ class MyClass {
 }
 ```
 
-然而，在JVM中你可以有些产生自真正的静态方法和域的伴生对象的成员，如果你使
-用`@JvmStatic`注解。可以从[Java interoperability](java-interop.html#static-methods-and-fields) 这里
+然而，在JVM中，如果你使用`@JvmStatic`注解，你可以让伴生对象的成员生成为实际存在的静态方法和域。
+可以从[Java interoperability](java-interop.html#static-methods-and-fields) 这里
 查看详情。
 
 
-### 对象表达式与对象声明区别
+### 对象表达式与对象声明语义上的不同
 
-这是一个重要的的不同在对象表达式与对象声明上
+这是一个在对象表达式与对象声明上重要的不同之处：
 
-* 对象声明被**lazily**初始化，当被第一次访问的时候
-* 对对象表达被**立即**执行（被初始化），当它被用到的时候
+* 当对象声明被第一次访问的时候,它会被**延迟（lazily）**初始化
+* 当对象表达式被用到的时候，它会被**立即**执行（并且初始化）
 
 
 
 --- 
 
-翻译By Wahchi
+翻译By Wahchi,[pecpwee](https://github.com/pecpwee)
 
 
