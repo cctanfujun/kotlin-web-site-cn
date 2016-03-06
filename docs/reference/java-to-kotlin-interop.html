@@ -1622,8 +1622,7 @@
 
 <h2 id="section-2">实例字段<a href="#section-2" class="anchor"></a></h2>
 
-<p>如果在 Java 需要像字段一样调用一个 Kotlin 的属性，你需要使用<code>@JvmField</code>注解。这个字段与属性具有相同的可见性。属性符合有实际字段(backing field)、非私有、没有<code>open</code>, <code>override</code> 或者 <code>const</code>修饰符、不是被委托的属性这些条件才可以使用<code>@JvmField</code>注解。
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (If you need to expose a Kotlin property as a field in Java, you need to annotate it with the <code>@JvmField</code> annotation.The field will have the same visibility as the underlying property. You can annotate a property with <code>@JvmField</code>if it has a backing field, is not private, does not have <code>open</code>, <code>override</code> or <code>const</code> modifiers, and is not a delegated property.)</p>
+<p>如果在 Java 需要像字段一样调用一个 Kotlin 的属性，你需要使用<code>@JvmField</code>注解。这个字段与属性具有相同的可见性。属性符合有实际字段(backing field)、非私有、没有<code>open</code>, <code>override</code> 或者 <code>const</code>修饰符、不是被委托的属性这些条件才可以使用<code>@JvmField</code>注解。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">@JvmField</span> <span class="k">val</span> <span class="py">ID</span> <span class="p">=</span> <span class="n">id</span>
@@ -1636,8 +1635,7 @@
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 
-<p><a href="properties.html#late-initialized-properties">延迟初始化</a> 的属性（在Java中）也可以被作为字段调用，字段的可见性和　<code>lateinit</code>　属性的　setter　相同。
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (<a href="properties.html#late-initialized-properties">Late-Initialized</a> properties are also exposed as fields. The visibility of the field will be the same as the visibility of <code>lateinit</code> property setter.)</p>
+<p><a href="properties.html#late-initialized-properties">延迟初始化</a> 的属性（在Java中）也可以被作为字段调用，字段的可见性和　<code>lateinit</code>　属性的　setter　相同。</p>
 
 <h2 id="section-3">静态字段<a href="#section-3" class="anchor"></a></h2>
 
@@ -1664,8 +1662,7 @@
 <span class="n">Key</span><span class="o">.</span><span class="na">COMPARATOR</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">key1</span><span class="o">,</span> <span class="n">key2</span><span class="o">);</span>
 <span class="c1">// public static final field in Key class</span></code></pre>
 
-<p>在命名对象或者伴生对象中的一个<a href="properties.html#late-initialized-properties">延迟初始化</a> 的属性都有一个静态实际字段，字段和该属性的setter也有相同的可见性。
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# ( A <a href="properties.html#late-initialized-properties">late-initialized</a> property in an object or a companion object has a static backing field with the same visibility as the property setter.)</p>
+<p>在命名对象或者伴生对象中的一个<a href="properties.html#late-initialized-properties">延迟初始化</a> 的属性都有一个静态实际字段，字段和该属性的setter也有相同的可见性。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">object</span> <span class="nc">Singleton</span> <span class="p">{</span>
     <span class="n">lateinit</span> <span class="k">var</span> <span class="py">provider</span><span class="p">:</span> <span class="n">Provider</span>
@@ -1675,8 +1672,7 @@
 <span class="n">Singleton</span><span class="o">.</span><span class="na">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Provider</span><span class="o">();</span>
 <span class="c1">// public static non-final field in Singleton class</span></code></pre>
 
-<p>使用<code>const</code> 注解可以将 Kotlin 属性转换成 Java 中的静态字段。
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (Properties annotated with <code>const</code> (in classes as well as at the top level) are turned into static fields in Java:)</p>
+<p>使用<code>const</code> 注解可以将 Kotlin 属性转换成 Java 中的静态字段。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// file example.kt</span>
 
@@ -1702,8 +1698,6 @@
 
 <p>正如上面所说，Kotlin 自动为包级函数生成了静态方法
 在Kotlin 中，还可以通过<code>@JvmStatic</code>注解在命名对象或者伴生对象中定义的函数来生成对应的静态方法。
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# ( As mentioned above, Kotlin generates static methods for package-level functions.)
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (Kotlin can also generate static methods for functions defined in named objects or companion objects if you annotate those functions as <code>@JvmStatic</code>.)
 例如：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">C</span> <span class="p">{</span>
@@ -1822,8 +1816,7 @@
 
 <h2 id="section-7">可变泛型<a href="#section-7" class="anchor"></a></h2>
 
-<p>当Kotlin 的类使用了 <a href="generics.html#declaration-site-variance">declaration-site variance</a>，从Java 的角度看起来有两种用法，比如我们下面涉及到的这种用法的类和两个函数。
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (When Kotlin classes make use of <a href="generics.html#declaration-site-variance">declaration-site variance</a>, there are two options of how their usages are seen from the Java code. Let’s say we have the following class and two functions that use it:)</p>
+<p>当Kotlin 的类使用了 <a href="generics.html#declaration-site-variance">declaration-site variance</a>，从Java 的角度看起来有两种用法，比如我们下面涉及到的这种用法的类和两个函数。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">Box</span><span class="p">&lt;</span><span class="k">out</span> <span class="n">T</span><span class="p">&gt;(</span><span class="k">val</span> <span class="py">value</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span>
 
@@ -1833,22 +1826,19 @@
 <span class="k">fun</span> <span class="nf">boxDerived</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Derived</span><span class="p">):</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">Derived</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">Box</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 <span class="k">fun</span> <span class="nf">unboxBase</span><span class="p">(</span><span class="n">box</span><span class="p">:</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">Base</span><span class="p">&gt;):</span> <span class="n">Base</span> <span class="p">=</span> <span class="n">box</span><span class="p">.</span><span class="n">value</span></code></pre>
 
-<p>一种看似理所当然地将函数转换成 Java 代码的方式可能会是这样：
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (A naive way of translating these functions into Java would be this:)</p>
+<p>一种看似理所当然地将函数转换成 Java 代码的方式可能会是这样：</p>
 
 <pre><code class="code-block _highlighted lang_java"><span class="n">Box</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">&gt;</span> <span class="nf">boxDerived</span><span class="o">(</span><span class="n">Derived</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
 <span class="n">Base</span> <span class="nf">unboxBase</span><span class="o">(</span><span class="n">Box</span><span class="o">&lt;</span><span class="n">Base</span><span class="o">&gt;</span> <span class="n">box</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span></code></pre>
 
 <p>问题是，在Kotlin 中我们可以这样写 <code>unboxBase(boxDerived("s"))</code> ，但是这样的写法在 Java 中是无法通过的，因为在 Java 中<code>Box</code>的泛型参数 <code>T</code> 是<em>不可变的</em>，<code>Box&lt;Derived&gt;</code> 实际上并不是<code>Box&lt;Base&gt;</code>的子类。如果在 Java 中要编译通过我们需要像下面这样定义<code>unboxBase</code>：
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (The problem is that in Kotlin we can say , but in Java that would be impossible, because in Java the class <code>Box</code> is <em>invariant</em> in its parameter <code>T</code>, and thus <code>Box&lt;Derived&gt;</code> is not a subtype of <code>Box&lt;Base&gt;</code>.   To make it work in Java we’d have to define <code>unboxBase</code> as follows:)</p>
+[//]:# (The problem is that in Kotlin we can say , but in Java that would be impossible, because in Java the class <code>Box</code> is <em>invariant</em> in its parameter <code>T</code>, and thus <code>Box&lt;Derived&gt;</code> is not a subtype of <code>Box&lt;Base&gt;</code>.   To make it work in Java we’d have to define <code>unboxBase</code> as follows:)</p>
 
 <pre><code class="code-block _highlighted lang_java"><span class="n">Base</span> <span class="nf">unboxBase</span><span class="o">(</span><span class="n">Box</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Base</span><span class="o">&gt;</span> <span class="n">box</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span></code></pre>
 
-<p>我们在这里通过使用 Java 的 <em>通配符类型</em> (<code>? extends Base</code>) 去模拟<a href="generics.html#declaration-site-variance">declaration-site variance</a>，因为在 Java   中只能这么做。
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (Here we make use of Java’s <em>wildcards types</em> (<code>? extends Base</code>) to emulate declaration-site variance through use-site variance, because it is all Java has.)</p>
+<p>我们在这里通过使用 Java 的 <em>通配符类型</em> (<code>? extends Base</code>) 去模拟<a href="generics.html#declaration-site-variance">declaration-site variance</a>，因为在 Java   中只能这么做。</p>
 
-<p>当作为参数的时候，为了让 Kotlin 的 API 工作，针对<code>Box</code> 我们将Koltin 中的 <code>Box&lt;Super&gt;</code> 在 Java 中生成为 <code>Box&lt;? extends Super&gt;</code>(<code>Foo</code>将生成为 <code>Foo&lt;? super Bar&gt;</code>) 。当作为返回值的时候，我们不需要生成通配符类型，因为如果生成通配符在 Java 中还需要做其他操作来转换(这是常见的 Java 代码风格)。因此上面例子中的函数实际上会被转换成下面的代码：
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (To make Kotlin APIs work in Java we generate <code>Box&lt;Super&gt;</code> as <code>Box&lt;? extends Super&gt;</code> for covariantly defined <code>Box</code> (or <code>Foo&lt;? super Bar&gt;</code> for contravariantly defined <code>Foo</code>) when it appears <em>as a parameter</em>. When it’s a return value,we don’t generate wildcards, because otherwise Java clients will have to deal with them (and it’s against the common Java coding style). Therefore, the functions from our example are actually translated as follows:)</p>
+<p>当作为参数的时候，为了让 Kotlin 的 API 工作，针对<code>Box</code> 我们将Koltin 中的 <code>Box&lt;Super&gt;</code> 在 Java 中生成为 <code>Box&lt;? extends Super&gt;</code>(<code>Foo</code>将生成为 <code>Foo&lt;? super Bar&gt;</code>) 。当作为返回值的时候，我们不需要生成通配符类型，因为如果生成通配符在 Java 中还需要做其他操作来转换(这是常见的 Java 代码风格)。因此上面例子中的函数实际上会被转换成下面的代码：</p>
 
 <pre><code class="code-block _highlighted lang_java"><span class="c1">// 作为返回类型 - 没有泛型</span>
 <span class="n">Box</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">&gt;</span> <span class="nf">boxDerived</span><span class="o">(</span><span class="n">Derived</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
@@ -1856,18 +1846,15 @@
 <span class="c1">// 作为参数 - 带有泛型 </span>
 <span class="n">Base</span> <span class="nf">unboxBase</span><span class="o">(</span><span class="n">Box</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Base</span><span class="o">&gt;</span> <span class="n">box</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span></code></pre>
 
-<p>注意：如果参数类型是 final 的，就不用生成泛型了，比如，无论在什么地方<code>Box&lt;String&gt;</code>转换成 Java 代码始终还是　<code>Box&lt;String&gt;</code>，
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (NOTE: when the argument type is final, there’s usually no point in generating the wildcard, so <code>Box&lt;String&gt;</code> is always <code>Box&lt;String&gt;</code>, no matter what position it takes.)</p>
+<p>注意：如果参数类型是 final 的，就不用生成泛型了，比如，无论在什么地方<code>Box&lt;String&gt;</code>转换成 Java 代码始终还是　<code>Box&lt;String&gt;</code>，</p>
 
-<p>如果我们不想要默认生成的通配符，需要自己指定可以使用<code>@JvmWildcard</code> 注解：
-[///]:# (If we need wildcards where they are not generated by default, we can use the <code>@JvmWildcard</code> annotation:)</p>
+<p>如果我们不想要默认生成的通配符，需要自己指定可以使用<code>@JvmWildcard</code> 注解：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">boxDerived</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Derived</span><span class="p">):</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">@JvmWildcard</span> <span class="n">Derived</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">Box</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 <span class="c1">// 将被转换成</span>
 <span class="c1">// Box&lt;? extends Derived&gt; boxDerived(Derived value) { ... }</span></code></pre>
 
-<p>另一方面，如果我们根本不需要默认的通配符转换，我们可以使用<code>@JvmSuppressWildcards</code>
-<a href="# (NOTE: `@JvmSuppressWildcards` can be used not only on individual type arguments, but on entire declarations, such as functions or classes, causing all wildcards inside them to be suppressed.)">//</a>:# (On the other hand, if we don’t need wildcards where they are generated, we can use <code>@JvmSuppressWildcards</code>:)</p>
+<p>另一方面，如果我们根本不需要默认的通配符转换，我们可以使用<code>@JvmSuppressWildcards</code></p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">unboxBase</span><span class="p">(</span><span class="n">box</span><span class="p">:</span> <span class="n">Box</span><span class="p">&lt;</span><span class="n">@JvmSuppressWildcards</span> <span class="n">Base</span><span class="p">&gt;):</span> <span class="n">Base</span> <span class="p">=</span> <span class="n">box</span><span class="p">.</span><span class="n">value</span>
 <span class="c1">// 将被转换成</span>
