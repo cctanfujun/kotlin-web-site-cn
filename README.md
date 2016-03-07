@@ -65,7 +65,7 @@
 |type-safe-builders.md|已翻译|[晓_晨Dev](http://tanfujun.cc)|  
 |dynamic-type.md|已翻译|[晓_晨Dev](http://tanfujun.cc)|  
 |java-interop.md|**未翻译**||  
-|java-to-kotlin-interop.md|**未翻译**||  
+|java-to-kotlin-interop.md|已翻译|[xwSurfer](https://github.com/xwSurfer)|  
 |kotlin-doc.md|已翻译|[化缘](http://frblog.sinaapp.com)|  
 |using-maven.md|已翻译|[DemoJameson](http://www.demojameson.com)|  
 |using-ant.md|**未翻译**||  
