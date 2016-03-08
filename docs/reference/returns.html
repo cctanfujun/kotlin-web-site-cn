@@ -1559,25 +1559,25 @@
 
         <h1 id="section">返回和跳转<a href="#section" class="anchor"></a></h1>
 
-<p>Kotlin 有三种跳出结构</p>
+<p>Kotlin 有三种结构化跳转操作符</p>
 
 <ul>
-  <li><em class="keyword">return</em>.默认情况下，从最近的一个封闭的方法或者 <a href="lambdas.html#anonymous-function">匿名函数</a>跳出.</li>
-  <li><em class="keyword">break</em>.终止最近的封闭循环</li>
-  <li><em class="keyword">continue</em>.直接进入循环体的下次循环</li>
+  <li><em class="keyword">return</em>.默认从最直接包围它的函数或者<a href="lambdas.html#匿名函数">匿名函数</a>返回。</li>
+  <li><em class="keyword">break</em>.终止最直接包围它的循环。</li>
+  <li><em class="keyword">continue</em>.继续下一次最直接包围它的循环。</li>
 </ul>
 
-<h2 id="section-1">中断和继续标签<a href="#section-1" class="anchor"></a></h2>
+<h2 id="breakcontinue">Break和Continue标签<a href="#breakcontinue" class="anchor"></a></h2>
 
-<p>在Kotlin中任何表达式都可以用<em class="keyword">label</em> （标签）来标记。<br />
-label的格式是被’@’标识符标记，例如：<code>abc@</code>, <code>fooBar@</code>都是有效的label（参见<a href="grammar.html#label">语法</a>）
-我们可以在前面放一个label来为一个表达式加标签。</p>
+<p>在 Kotlin 中任何表达式都可以用标签（<em class="keyword">label</em>）来标记。
+标签的格式为标识符后跟 <code>@</code> 符号，例如：<code>abc@</code>、<code>fooBar@</code>都是有效的标签（参见<a href="grammar.html#label">语法</a>）。
+要为一个表达式加标签，我们只要在其前加标签即可。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">loop</span><span class="err">@</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1.</span><span class="p">.</span><span class="m">100</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">}</span></code></pre>
 
-<p>现在，我们可以将label与 <em class="keyword">break</em> 或者<em class="keyword">continue</em>一起使用：</p>
+<p>现在，我们可以用标签限制 <em class="keyword">break</em> 或者<em class="keyword">continue</em>：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">loop</span><span class="err">@</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1.</span><span class="p">.</span><span class="m">100</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="k">in</span> <span class="m">1.</span><span class="p">.</span><span class="m">100</span><span class="p">)</span> <span class="p">{</span>
@@ -1586,14 +1586,14 @@ label的格式是被’@’标识符标记，例如：<code>abc@</code>, <code>f
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<p>break执行后将跳转到标记处。
-<em class="keyword">continue</em>将进入循环体的下次循环</p>
+<p>标签限制的 break 跳转到刚好位于该标签指定的循环后面的执行点。
+<em class="keyword">continue</em> 继续标签指定的循环的下一次迭代。</p>
 
-<h2 id="section-2">返回标签<a href="#section-2" class="anchor"></a></h2>
+<h2 id="section-1">标签处返回<a href="#section-1" class="anchor"></a></h2>
 
-<p>在Kotlin里，函数字面量、局部函数和对象表达式等函数都可以被嵌套在一起
-适当的返回方式允许我们从外部方法返回值<br />
-带标签的<strong>return</strong>，最重要的一个用途，就是让我们可以从 lambda 表达式中返回。</p>
+<p>Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数可以被嵌套。
+标签限制的 <em class="keyword">return</em> 允许我们从外层函数返回。
+最重要的一个用途就是从 lambda 表达式中返回。回想一下我们这么写的时候：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">ints</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span>
@@ -1602,9 +1602,9 @@ label的格式是被’@’标识符标记，例如：<code>abc@</code>, <code>f
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<p>这个 <em class="keyword">return</em>表达式从最近的封闭的方法中返回，例如‘foo’。
- (注意，非全局的返回只支持lambda表达式，参见<a href="inline-functions.html">内联函数</a>.)
-如果我们只是需要跳出lambda表达式，我们必须标记它并且返回这个标签</p>
+<p>这个 <em class="keyword">return</em> 表达式从最直接包围它的函数即 <code>foo</code> 中返回。
+（注意，这种非局部的返回只支持传给<a href="inline-functions.html">内联函数</a>的 lambda 表达式。）
+如果我们需要从 lambda 表达式中返回，我们必须给它加标签并用以限制 <em class="keyword">return</em>。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">ints</span><span class="p">.</span><span class="n">forEach</span> <span class="n">lit</span><span class="err">@</span> <span class="p">{</span>
@@ -1613,8 +1613,8 @@ label的格式是被’@’标识符标记，例如：<code>abc@</code>, <code>f
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<p>现在只是从lambda表达式返回。有时候用匿名的标签将会更加方便 
-像这样和函数同名的标签是可以的</p>
+<p>现在，它只会从 lambda 表达式中返回。通常情况下使用隐式标签更方便。
+该标签与接受该 lambda 的函数同名。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">ints</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span>
@@ -1623,8 +1623,8 @@ label的格式是被’@’标识符标记，例如：<code>abc@</code>, <code>f
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<p>或者，我们用一个<a href="lambdas.html#anonymous-functions">匿名函数</a>.替代 lambda 表达式。
-在匿名函数内部声明一个<em class="keyword">return</em>将从其匿名函数自身返回</p>
+<p>或者，我们用一个<a href="lambdas.html#匿名函数">匿名函数</a>替代 lambda 表达式。
+匿名函数内部的 <em class="keyword">return</em> 语句将从该匿名函数自身返回</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">ints</span><span class="p">.</span><span class="n">forEach</span><span class="p">(</span><span class="k">fun</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span>
@@ -1633,21 +1633,11 @@ label的格式是被’@’标识符标记，例如：<code>abc@</code>, <code>f
   <span class="p">})</span>
 <span class="p">}</span></code></pre>
 
-<p>当要返回一个值得时候，推荐使用描述性的返回，例如：</p>
+<p>当要返一个回值的时候，解析器优先选用标签限制的 return，即</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">return</span><span class="n">@a</span> <span class="m">1</span></code></pre>
 
-<p>意思是“返回被标记为‘@a’值是‘1’的标签，而不是像‘（@a 1）’的一个标签表达式”</p>
-
-<blockquote>
-  <p>~~被命名的方法自动被定义成为标签~~</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">outer</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">fun</span> <span class="nf">inner</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span><span class="n">@outer</span> <span class="c1">// the label @outer was defined automatically</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-</blockquote>
+<p>意为“从标签 <code>@a</code> 返回 1”，而不是“返回一个标签标注的表达式 <code>(@a 1)</code>”。</p>
 
 <hr />
 

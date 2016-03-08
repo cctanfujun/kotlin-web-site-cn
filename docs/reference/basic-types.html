@@ -1559,13 +1559,13 @@
 
         <h1 id="section">基本类型<a href="#section" class="anchor"></a></h1>
 
-<p>在Kotlin中,所有东西都是对象，所以我们可以调用成员函数和属性的任何变量对象。有些类型是内置的,他们的实现被优化过, 但是用户看起来他们就像普通的类. 本节我们会描述这些类型: numbers, characters, booleans 和 arrays.</p>
+<p>在 Kotlin 中，所有东西都是对象，在这个意义上讲所以我们可以在任何变量上调用成员函数和属性。有些类型是内置的，因为他们的实现是优化过的。但是用户看起来他们就像普通的类。本节我们会描述大多数这些类型：数字、字符、布尔和数组。</p>
 
-<h2 id="numbers">Numbers<a href="#numbers" class="anchor"></a></h2>
+<h2 id="section-1">数字<a href="#section-1" class="anchor"></a></h2>
 
-<p>Kotlin处理numbers和Java很接近,但是并不完全相同. 例如, 对于numbers没有隐式扩大转换(如java中int可以隐式变为long),在一些情况下文字的使用有所不同.</p>
+<p>Kotlin 处理数字在某种程度上接近 Java，但是并不完全相同。例如，对于数字没有隐式拓宽转换（如 Java 中 <code>int</code> 可以隐式转换为<code>long</code>——译者注)，另外有些情况的字面值略有不同。</p>
 
-<p>对于numbers Kotlin提供了如下的内置类型 (与Java很相近):</p>
+<p>Kotlin 提供了如下的内置类型来表示数字（与 Java 很相近）：</p>
 
 <table>
   <thead>
@@ -1602,45 +1602,45 @@
   </tbody>
 </table>
 
-<p>注意在kotlin中 characters 不是 numbers</p>
+<p>注意在 Kotlin 中字符不是数字</p>
 
-<h3 id="section-1">字面量<a href="#section-1" class="anchor"></a></h3>
+<h3 id="section-2">字面常量<a href="#section-2" class="anchor"></a></h3>
 
-<p>下面是一些常量的写法:</p>
+<p>数值常量字面值有以下几种:</p>
 
 <ul>
   <li>十进制: <code>123</code>
     <ul>
-      <li>Longs类型用大写 <code>L</code> 标记: <code>123L</code></li>
+      <li>Long 类型用大写 <code>L</code> 标记: <code>123L</code></li>
     </ul>
   </li>
   <li>十六进制: <code>0x0F</code></li>
   <li>二进制: <code>0b00001011</code></li>
 </ul>
 
-<p>注意: 不支持8进制</p>
+<p>注意: 不支持八进制</p>
 
 <p>Kotlin 同样支持浮点数的常规表示方法:</p>
 
 <ul>
-  <li>Doubles  <code>123.5</code>, <code>123.5e10</code></li>
-  <li>Floats用 <code>f</code> 或者 <code>F</code> 标记: <code>123.5f</code></li>
+  <li>默认 double：<code>123.5</code>、<code>123.5e10</code></li>
+  <li>Float 用 <code>f</code> 或者 <code>F</code> 标记: <code>123.5f</code></li>
 </ul>
 
-<h3 id="section-2">存储方式<a href="#section-2" class="anchor"></a></h3>
+<h3 id="section-3">存储方式<a href="#section-3" class="anchor"></a></h3>
 
-<p>在Java平台数字是物理存储为JVM的原始类型,除非我们需要一个可空的引用（例如int？）或泛型. 后者情况下数字被装箱（指的是赋值的时候把实例复制了一下，不是相同实例）。
-装箱数字不会保存它的实例:</p>
+<p>在 Java 平台数字是物理存储为 JVM 的原生类型，除非我们需要一个可空的引用（如 <code>Int?</code>）或泛型。
+后者情况下会把数字装箱。</p>
 
-<p>Note that boxing of numbers does not preserve identity:</p>
+<p>注意数字装箱不会保留同一性:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">a</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">10000</span>
-<span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="p">===</span> <span class="n">a</span><span class="p">)</span> <span class="c1">// Prints &#39;true&#39;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="p">===</span> <span class="n">a</span><span class="p">)</span> <span class="c1">// 打印 &#39;true&#39;</span>
 <span class="k">val</span> <span class="py">boxedA</span><span class="p">:</span> <span class="n">Int</span><span class="p">?</span> <span class="p">=</span> <span class="n">a</span>
 <span class="k">val</span> <span class="py">anotherBoxedA</span><span class="p">:</span> <span class="n">Int</span><span class="p">?</span> <span class="p">=</span> <span class="n">a</span>
-<span class="n">print</span><span class="p">(</span><span class="n">boxedA</span> <span class="p">===</span> <span class="n">anotherBoxedA</span><span class="p">)</span> <span class="c1">// !!!Prints &#39;false&#39;!!!</span></code></pre>
+<span class="n">print</span><span class="p">(</span><span class="n">boxedA</span> <span class="p">===</span> <span class="n">anotherBoxedA</span><span class="p">)</span> <span class="c1">// !!!打印 &#39;false&#39;!!!</span></code></pre>
 
-<p>另一方面它们值相等:</p>
+<p>另一方面，它保留了相等性:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">a</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">10000</span>
 <span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="p">==</span> <span class="n">a</span><span class="p">)</span> <span class="c1">// Prints &#39;true&#39;</span>
@@ -1648,29 +1648,29 @@
 <span class="k">val</span> <span class="py">anotherBoxedA</span><span class="p">:</span> <span class="n">Int</span><span class="p">?</span> <span class="p">=</span> <span class="n">a</span>
 <span class="n">print</span><span class="p">(</span><span class="n">boxedA</span> <span class="p">==</span> <span class="n">anotherBoxedA</span><span class="p">)</span> <span class="c1">// Prints &#39;true&#39;</span></code></pre>
 
-<h3 id="section-3">显示转换<a href="#section-3" class="anchor"></a></h3>
+<h3 id="section-4">显式转换<a href="#section-4" class="anchor"></a></h3>
 
-<p>由于不同的存储方式小的类型并不是大类型的子类型。
-如果它们是的话，就会出现下述问题（下面的代码不能通过编译）：</p>
+<p>由于不同的表示方式，较小类型并不是较大类型的子类型。
+如果它们是的话，就会出现下述问题：</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// Hypothetical code, does not actually compile:</span>
-<span class="k">val</span> <span class="py">a</span><span class="p">:</span> <span class="n">Int</span><span class="p">?</span> <span class="p">=</span> <span class="m">1</span> <span class="c1">// A boxed Int (java.lang.Integer)</span>
-<span class="k">val</span> <span class="py">b</span><span class="p">:</span> <span class="n">Long</span><span class="p">?</span> <span class="p">=</span> <span class="n">a</span> <span class="c1">// implicit conversion yields a boxed Long (java.lang.Long)</span>
-<span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="p">==</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// Surprise! This prints &quot;false&quot; as Long&#39;s equals() check for other part to be Long as well</span></code></pre>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// 假想的代码，实际上并不能编译：</span>
+<span class="k">val</span> <span class="py">a</span><span class="p">:</span> <span class="n">Int</span><span class="p">?</span> <span class="p">=</span> <span class="m">1</span> <span class="c1">// 一个装箱的 Int (java.lang.Integer)</span>
+<span class="k">val</span> <span class="py">b</span><span class="p">:</span> <span class="n">Long</span><span class="p">?</span> <span class="p">=</span> <span class="n">a</span> <span class="c1">// 隐式转换产生一个装箱的 Long (java.lang.Long)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">a</span> <span class="p">==</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// 惊！这将打印 &quot;false&quot; 鉴于 Long 的 equals() 检测其他部分也是 Long</span></code></pre>
 
-<p>假设这样是可以的，这里我们就悄无声息的丢掉了一些数据.</p>
+<p>所以同一性还有相等性都会在所有地方悄无声息地失去。</p>
 
-<p>因此较小的类型不能隐式转换为较大的类型。
-因此我们不能声明一个 <code>Byte</code> 类型给一个 <code>Int</code> 变量，在不进行显示转换的情况下。</p>
+<p>因此较小的类型<strong>不能</strong>隐式转换为较大的类型。
+这意味着在不进行显式转换的情况下我们不能把 <code>Byte</code> 型值赋给一个 <code>Int</code> 变量。</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">b</span><span class="p">:</span> <span class="n">Byte</span> <span class="p">=</span> <span class="m">1</span> <span class="c1">// OK, literals are checked statically</span>
-<span class="k">val</span> <span class="py">i</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="n">b</span> <span class="c1">// ERROR</span></code></pre>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">b</span><span class="p">:</span> <span class="n">Byte</span> <span class="p">=</span> <span class="m">1</span> <span class="c1">// OK, 字面值是静态检测的</span>
+<span class="k">val</span> <span class="py">i</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="n">b</span> <span class="c1">// 错误</span></code></pre>
 
-<p>我们可以显示转换的去扩大类型</p>
+<p>我们可以显式转换来拓宽数字</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">i</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="n">b</span><span class="p">.</span><span class="n">toInt</span><span class="p">()</span> <span class="c1">// OK: explicitly widened</span></code></pre>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">i</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="n">b</span><span class="p">.</span><span class="n">toInt</span><span class="p">()</span> <span class="c1">// OK: 显式拓宽</span></code></pre>
 
-<p>每个number类型支持如下的转换:</p>
+<p>每个数字类型支持如下的转换:</p>
 
 <ul>
   <li><code>toByte(): Byte</code></li>
@@ -1682,73 +1682,73 @@
   <li><code>toChar(): Char</code></li>
 </ul>
 
-<p>失去隐式类型转换，其实并没有带来多少困扰，因为使用字面量的时候是没有代价的，因为字面量的类型是推导出来的；另一方面，算数运算操作都针对不同类型的参数做好了重载，比如：</p>
+<p>缺乏隐式类型转换并不显著，因为类型会从上下文推断出来，而算术运算会有重载做适当转换，例如：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">l</span> <span class="p">=</span> <span class="m">1L</span> <span class="p">+</span> <span class="m">3</span> <span class="c1">// Long + Int =&gt; Long</span></code></pre>
 
-<h3 id="section-4">运算符<a href="#section-4" class="anchor"></a></h3>
+<h3 id="section-5">运算<a href="#section-5" class="anchor"></a></h3>
 
-<p>Kotlin支持标准的算数操作符，并在相应的类上定义为成员函数（但编译器会针对运算进行优化，将函数调用优化成直接的算数操作）。
-查看 <a href="operator-overloading.html">Operator overloading</a>.</p>
+<p>Kotlin支持数字运算的标准集，运算被定义为相应的类成员（但编译器会将函数调用优化为相应的指令）。
+参见 <a href="operator-overloading.html">运算符重载</a>。</p>
 
-<p>对于按位操作(bitwise operation)，没有特别的符号来表示，而是直接使用命名函数:</p>
+<p>对于位运算，没有特殊字符来表示，而只可用中缀方式调用命名函数，例如:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">x</span> <span class="p">=</span> <span class="p">(</span><span class="m">1</span> <span class="n">shl</span> <span class="m">2</span><span class="p">)</span> <span class="n">and</span> <span class="m">0</span><span class="n">x000FF000</span></code></pre>
 
-<p>这是完整的位运算操作 (只能对 <code>Int</code> 或者 <code>Long</code> 使用):</p>
+<p>这是完整的位运算列表（只用于 <code>Int</code> 和 <code>Long</code>）：</p>
 
 <ul>
-  <li><code>shl(bits)</code> – signed shift left (Java’s <code>&lt;&lt;</code>)</li>
-  <li><code>shr(bits)</code> – signed shift right (Java’s <code>&gt;&gt;</code>)</li>
-  <li><code>ushr(bits)</code> – unsigned shift right (Java’s <code>&gt;&gt;&gt;</code>)</li>
-  <li><code>and(bits)</code> – bitwise and</li>
-  <li><code>or(bits)</code> – bitwise or</li>
-  <li><code>xor(bits)</code> – bitwise xor</li>
-  <li><code>inv()</code> – bitwise inversion</li>
+  <li><code>shl(bits)</code> – 有符号左移 (Java’s <code>&lt;&lt;</code>)</li>
+  <li><code>shr(bits)</code> – 有符号右移 (Java’s <code>&gt;&gt;</code>)</li>
+  <li><code>ushr(bits)</code> – 无符号右移 (Java’s <code>&gt;&gt;&gt;</code>)</li>
+  <li><code>and(bits)</code> – 位与</li>
+  <li><code>or(bits)</code> – 位或</li>
+  <li><code>xor(bits)</code> – 位异或</li>
+  <li><code>inv()</code> – 位非</li>
 </ul>
 
-<h2 id="characters">Characters<a href="#characters" class="anchor"></a></h2>
+<h2 id="section-6">字符<a href="#section-6" class="anchor"></a></h2>
 
-<p>Characters 用 <code>Char</code>来表示. 不能像对待numbers那样处理</p>
+<p>字符用 <code>Char</code> 类型表示。它们不能直接当作数字</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">check</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="n">Char</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="p">==</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// ERROR: incompatible types</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="p">==</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 错误：类型不兼容</span>
     <span class="c1">// ...</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<p>Character literals go in single quotes: <code>'1'</code>.
-Special characters can be escaped using a backslash.
-The following escape sequences are supported: <code>\t</code>, <code>\b</code>, <code>\n</code>, <code>\r</code>, <code>\'</code>, <code>\"</code>, <code>\\</code> and <code>\$</code>.
-To encode any other character, use the Unicode escape sequence syntax: <code>'\uFF00'</code>.</p>
+<p>字符串字面值用单引号括起来: <code>'1'</code>。
+特殊字符可以用反斜杠转义。
+支持这几个转义序列：<code>\t</code>、 <code>\b</code>、<code>\n</code>、<code>\r</code>、<code>\'</code>、<code>\"</code>、<code>\\</code> 和 <code>\$</code>。
+编码其他字符要用 Unicode 转义序列语法：<code>'\uFF00'</code>。</p>
 
-<p>我们可以显式把Character转换为<code>Int</code></p>
+<p>我们可以显式把字符转换为 <code>Int</code> 数字：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">decimalDigitValue</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="n">Char</span><span class="p">):</span> <span class="n">Int</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="p">!</span><span class="k">in</span> <span class="sc">&#39;0&#39;</span><span class="p">..</span><span class="sc">&#39;9&#39;</span><span class="p">)</span>
     <span class="k">throw</span> <span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;Out of range&quot;</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">c</span><span class="p">.</span><span class="n">toInt</span><span class="p">()</span> <span class="p">-</span> <span class="sc">&#39;0&#39;</span><span class="p">.</span><span class="n">toInt</span><span class="p">()</span> <span class="c1">// Explicit conversions to numbers</span>
+  <span class="k">return</span> <span class="n">c</span><span class="p">.</span><span class="n">toInt</span><span class="p">()</span> <span class="p">-</span> <span class="sc">&#39;0&#39;</span><span class="p">.</span><span class="n">toInt</span><span class="p">()</span> <span class="c1">// 显式转换为数字</span>
 <span class="p">}</span></code></pre>
 
-<p>像numbers, characters是被装箱当使用一个可空的引用.这样实例不会被保存。</p>
+<p>当需要可空引用时，像数字、字符会被装箱。装箱操作不会保留同一性。</p>
 
-<h2 id="booleans">Booleans<a href="#booleans" class="anchor"></a></h2>
+<h2 id="section-7">布尔<a href="#section-7" class="anchor"></a></h2>
 
-<p>类型<code>Boolean</code>有两个值: <em class="keyword">true</em> 和 <em class="keyword">false</em>.</p>
+<p>布尔用 <code>Boolean</code> 类型表示，它有两个值：<em class="keyword">true</em> 和 <em class="keyword">false</em>。</p>
 
-<p>Booleans使用nullable时候Boolean也会被装箱.</p>
+<p>若需要可空引用布尔会被装箱。</p>
 
-<p>内置对Booelan的操作</p>
+<p>内置的布尔运算有：</p>
 
 <ul>
-  <li><code>||</code> – 短路或</li>
-  <li><code>&amp;&amp;</code> – 短路与</li>
-  <li><code>!</code> - negation</li>
+  <li><code>||</code> – 短路逻辑或</li>
+  <li><code>&amp;&amp;</code> – 短路逻辑与</li>
+  <li><code>!</code> - 逻辑非</li>
 </ul>
 
-<h2 id="section-5">数组<a href="#section-5" class="anchor"></a></h2>
+<h2 id="section-8">数组<a href="#section-8" class="anchor"></a></h2>
 
-<p>数组在Kotlin中使用 <code>Array</code>类来表示, <code>Array</code>类定义了set和get函数（使用时可以用<code>[]</code>，通过符号重载的约定转换）和<code>size</code>属性，连同一些其他有用的成员函数：</p>
+<p>数组在 Kotlin 中使用 <code>Array</code> 类来表示，它定义了 <code>get</code> 和 <code>set</code> 函数（按照运算符重载约定这会转变为 <code>[]</code>）和 <code>size</code> 属性，以及一些其他有用的成员函数：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">Array</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="k">private</span> <span class="n">constructor</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">val</span> <span class="py">size</span><span class="p">:</span> <span class="n">Int</span>
@@ -1759,68 +1759,68 @@ To encode any other character, use the Unicode escape sequence syntax: <code>'\u
   <span class="c1">// ...</span>
 <span class="p">}</span></code></pre>
 
-<p>我们可以使用库函数<code>arrayOf()</code>来创建一个包含数值的数组, <code>arrayOf(1, 2, 3)</code> 创建了 array [1, 2, 3].
-或者, <code>arrayOfNulls()</code>可以创建一个指定大小，元素都为空的数组。</p>
+<p>我们可以使用库函数 <code>arrayOf()</code> 来创建一个数组并传递元素值给它，这样 <code>arrayOf(1, 2, 3)</code> 创建了 array [1, 2, 3]。
+或者，库函数 <code>arrayOfNulls()</code> 可以用于创建一个指定大小、元素都为空的数组。</p>
 
-<p>Another option is to use a factory function that takes the array size and the function that can return the initial value
-of each array element given its index:</p>
+<p>另一个选项是用接受数组大小和一个函数参数的工厂函数，用作参数的函数能够返回
+给定索引的每个元素初始值：</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// Creates an Array&lt;String&gt; with values [&quot;0&quot;, &quot;1&quot;, &quot;4&quot;, &quot;9&quot;, &quot;16&quot;]</span>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// 创建一个 Array&lt;String&gt; 初始化为 [&quot;0&quot;, &quot;1&quot;, &quot;4&quot;, &quot;9&quot;, &quot;16&quot;]</span>
 <span class="k">val</span> <span class="py">asc</span> <span class="p">=</span> <span class="n">Array</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="p">{</span> <span class="n">i</span> <span class="p">-&gt;</span> <span class="p">(</span><span class="n">i</span> <span class="p">*</span> <span class="n">i</span><span class="p">).</span><span class="n">toString</span><span class="p">()</span> <span class="p">})</span></code></pre>
 
-<p>综上, <code>[]</code>操作符代表了成员函数<code>get()</code>和<code>set()</code>.</p>
+<p>如上所述，<code>[]</code> 运算符代表调用成员函数 <code>get()</code> 和 <code>set()</code>。</p>
 
-<p>注意: 与Java不同的是, Kotlin中数组不可变. 这意味着我们不能声明 <code>Array&lt;String&gt;</code>
-到<code>Array&lt;Any&gt;</code>, 否则可能会产生一个运行时错误(但是你可以使用 <code>Array&lt;out Any&gt;</code>, 
-查看 <a href="generics.html#type-projections">Type Projections</a>).</p>
+<p>注意: 与 Java 不同的是，Kotlin 中数组是不变的（invariant）。这意味着 Kotlin 不让我们把 <code>Array&lt;String&gt;</code>
+赋值给 <code>Array&lt;Any&gt;</code>，以防止可能的运行时失败（但是你可以使用 <code>Array&lt;out Any&gt;</code>, 
+参见 <a href="generics.html#类型预测">类型预测</a>）。</p>
 
-<p>Kotlin有专门的类来表示原始类型的数组，避免了装箱开销: <code>ByteArray</code>,
-<code>ShortArray</code>, <code>IntArray</code> 等等. 这些类和<code>Array</code>并没有继承关系,但是
-它们有同样的方法属性集. 它们也都有相应的工厂方法:</p>
+<p>Kotlin 也有无装箱开销的专门的类来表示原生类型数组: <code>ByteArray</code>、
+<code>ShortArray</code>、<code>IntArray</code> 等等。这些类和 <code>Array</code> 并没有继承关系，但是
+它们有同样的方法属性集。它们也都有相应的工厂方法:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">x</span><span class="p">:</span> <span class="n">IntArray</span> <span class="p">=</span> <span class="n">intArrayOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
 <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">+</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]</span></code></pre>
 
-<h2 id="section-6">字符串<a href="#section-6" class="anchor"></a></h2>
+<h2 id="section-9">字符串<a href="#section-9" class="anchor"></a></h2>
 
-<p>字符串用<code>String</code>表示。字符串是不可变的。<br />
-字符串的原始字符可以使用操作符访问: <code>s[i]</code>.
-字符串可以使用<em class="keyword">for</em>循环遍历:</p>
+<p>字符串用 <code>String</code> 类型表示。字符串是不可变的。
+字符串的元素——字符可以使用索引运算符访问: <code>s[i]</code>。
+可以用 <em class="keyword">for</em> 循环迭代字符串:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="k">in</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">println</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="p">}</span></code></pre>
 
-<h3 id="section-7">字符串字面量<a href="#section-7" class="anchor"></a></h3>
+<h3 id="section-10">字符串字面值<a href="#section-10" class="anchor"></a></h3>
 
-<p>Kotlin有两种类型的字符串: 转义字符串可能由转义字符、原生字符串、换行和任意文本.转义字符串很像 Java 字符串:</p>
+<p>Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，以及原生字符串白可以包含换行和任意文本。转义字符串很像 Java 字符串:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">s</span> <span class="p">=</span> <span class="s">&quot;Hello, world!\n&quot;</span></code></pre>
 
-<p>转义方式采用传统的反斜杠. See <a href="#characters">Characters</a> above for the list of supported escape sequences.</p>
+<p>转义采用传统的反斜杠方式。参见上面的 <a href="#字符">字符</a> 查看支持的转义序列。</p>
 
-<p><em>原生字符串</em>使用三个引号(<code>"""</code>)包括，内部没有转义，可以包含换行和任何其他文本:</p>
+<p><em>原生字符串</em> 使用三个引号（<code>"""</code>）分界符括起来，内部没有转义并且可以包含换行和任何其他字符:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">text</span> <span class="p">=</span> <span class="s">&quot;&quot;&quot;</span>
   <span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="k">in</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span>
     <span class="n">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="s">&quot;&quot;&quot;</span></code></pre>
 
-<h3 id="section-8">字符串模板<a href="#section-8" class="anchor"></a></h3>
+<h3 id="section-11">字符串模板<a href="#section-11" class="anchor"></a></h3>
 
-<p>字符串可以包含<em>模板表达式</em>，即一些小段代码，会求值并把结果合并到字符串中。
-模板表达式以<code>$</code>符号开始，包含一个简单的名称:</p>
+<p>字符串可以包含<em>模板表达式</em> ，即一些小段代码，会求值并把结果合并到字符串中。
+模板表达式以美元符（<code>$</code>）开头，由一个简单的名字构成:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">i</span> <span class="p">=</span> <span class="m">10</span>
-<span class="k">val</span> <span class="py">s</span> <span class="p">=</span> <span class="s">&quot;i = $i&quot;</span> <span class="c1">// evaluates to &quot;i = 10&quot;</span></code></pre>
+<span class="k">val</span> <span class="py">s</span> <span class="p">=</span> <span class="s">&quot;i = $i&quot;</span> <span class="c1">// 求值结果为 &quot;i = 10&quot;</span></code></pre>
 
-<p>或者用花括号扩起来，内部可以是任意表达式:</p>
+<p>或者用花括号扩起来的任意表达式:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">s</span> <span class="p">=</span> <span class="s">&quot;abc&quot;</span>
-<span class="k">val</span> <span class="py">str</span> <span class="p">=</span> <span class="s">&quot;$s.length is ${s.length}&quot;</span> <span class="c1">// evaluates to &quot;abc.length is 3&quot;</span></code></pre>
+<span class="k">val</span> <span class="py">str</span> <span class="p">=</span> <span class="s">&quot;$s.length is ${s.length}&quot;</span> <span class="c1">// 求值结果为 &quot;abc.length is 3&quot;</span></code></pre>
 
-<p>Templates are supported both inside raw strings and inside escaped strings.
-If you need to represent a literal <code>$</code> character in a raw string (which doesn’t support backslash escaping), you can use the following syntax:</p>
+<p>原生字符串和转义字符串内部都支持模板。
+如果你需要在原生字符串中表示字面值 <code>$</code> 字符（它不支持反斜杠转义），你可以用下列语法：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">price</span> <span class="p">=</span> <span class="s">&quot;&quot;&quot;</span>
 <span class="err">$</span><span class="p">{</span><span class="sc">&#39;$&#39;</span><span class="p">}</span><span class="m">9.99</span>
@@ -1829,7 +1829,6 @@ If you need to represent a literal <code>$</code> character in a raw string (whi
 <hr />
 
 <p>校对BY 空白</p>
-
 
     </article>
 </div>

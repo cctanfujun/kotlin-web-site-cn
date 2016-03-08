@@ -1569,35 +1569,42 @@
 
 <span class="c1">// ...</span></code></pre>
 
-<p>源文件所有的(无论是类或者函数)被包声明覆盖.
-所以<code>baz()</code>的全名是<code>foo.bar.baz</code>, <code>Goo</code>的全名是<code>foo.bar.Goo</code>.</p>
+<p>源文件所有内容（无论是类还是函数）都包含在声明的包内。
+所以上例中 <code>baz()</code> 的全名是 <code>foo.bar.baz</code>、<code>Goo</code> 的全名是 <code>foo.bar.Goo</code>。</p>
 
-<p>如果没有明确声明文件属于”default”且包没有名称.</p>
+<p>如果没有指明包，该文件的内容属于无名字的默认包。</p>
 
 <h2 id="section-1">导入<a href="#section-1" class="anchor"></a></h2>
 
-<p>除了模块定义的默认导入之外，每个源文件也可以声明自己的导入。
-导入语句的语法定义描述在<a href="grammar.html#imports">grammar</a>.</p>
+<p>除了默认导入之外，每个文件可以包含它自己的导入指令。
+导入语法在<a href="grammar.html#import">语法</a>中讲述。</p>
 
-<p>可以导入一个单独的名称，如.</p>
+<p>可以导入一个单独的名字，如.</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">foo.Bar</span> <span class="c1">// Bar is now accessible without qualification</span></code></pre>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">foo.Bar</span> <span class="c1">// 现在 Bar 可以不用限定符访问</span></code></pre>
 
 <p>也可以导入一个作用域下的所有内容（包、类、对象等）:</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">foo.*</span> <span class="c1">// everything in &#39;foo&#39; becomes accessible</span></code></pre>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">foo.*</span> <span class="c1">// &#39;foo&#39; 中的一切都可访问</span></code></pre>
 
-<p>如果出现名称冲突，可以使用 <em class="keyword">as</em> <code>as</code>关键字来重命名导入的名称：</p>
+<p>如果出现名字冲突，可以使用 <em class="keyword">as</em> 关键字在本地重命名冲突项来消歧义：</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">foo.Bar</span> <span class="c1">// Bar is accessible</span>
-<span class="k">import</span> <span class="nn">bar.Bar</span> <span class="k">as</span> <span class="n">bBar</span> <span class="c1">// bBar stands for &#39;bar.Bar&#39;</span></code></pre>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">foo.Bar</span> <span class="c1">// Bar 可访问</span>
+<span class="k">import</span> <span class="nn">bar.Bar</span> <span class="k">as</span> <span class="n">bBar</span> <span class="c1">// bBar 代表 &#39;bar.Bar&#39;</span></code></pre>
 
-<h2 id="section-2">可见性和包嵌套<a href="#section-2" class="anchor"></a></h2>
+<p>关键字 <code>import</code> 并不仅限于导入类；也可用它来导入其他声明：</p>
 
-<p>如果顶层声明是<em class="keyword">private</em>, 它将是私有的(查看 <a href="visibility-modifiers.html">Visibility Modifiers</a>).
-&gt; ~~尽管Kotlin中可以包嵌套, 如 包<code>foo.bar</code> 是<code>foo</code>的一个成员,但是一些<em class="keyword">private</em> 仅仅可以被它的子包所见.~~
-&gt; 
-&gt; ~~注意外部包成员<strong>不是</strong>默认引入的,例如，在<code>foo.bar</code>包的文件中我们不能在不引入的情况下访问<code>foo</code>.~~</p>
+<ul>
+  <li>顶层函数及属性</li>
+  <li>在<a href="object-declarations.html#对象声明">对象声明</a>中声明的函数和属性;</li>
+  <li><a href="enum-classes.html">枚举常量</a></li>
+</ul>
+
+<p>与 Java 不同，Kotlin 没有单独的 “import static” 语法； 所有这些声明都用 <code>import</code> 关键字导入。</p>
+
+<h2 id="section-2">顶层声明可见性<a href="#section-2" class="anchor"></a></h2>
+
+<p>如果顶层声明是 <em class="keyword">private</em> 的，它是声明它的文件所私有的（参见 <a href="visibility-modifiers.html">可见性修饰符</a>）。</p>
 
     </article>
 </div>

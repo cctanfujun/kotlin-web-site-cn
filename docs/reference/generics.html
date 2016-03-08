@@ -1744,10 +1744,24 @@
 <h3 id="star-projections">星-预测 Star-Projections<a href="#star-projections" class="anchor"></a></h3>
 
 <p>有时，你试图说你并不知道任何类型声明的方法，但是仍旧想安全地使用他。
-这里的安全方法指我们需要对<em>out</em>-预测
-（对象并没有使用任何未知类型），预测具有相对参数的上界，例如大多数情况下的 <code>out Any?</code> 。
-Kotlin提供了一种简单的方法，称为<strong>星预测</strong>：<code>Foo&lt;*&gt;</code>代表<code>Foo&lt;out Bar&gt;</code>，<code>Bar</code>是
-<code>Foo</code>参数类型的上界。</p>
+这里的安全方法指我们需要对<em>out</em>-预测</p>
+
+<p>Kotlin提供了所谓的<strong>星预测</strong>语法如下：</p>
+
+<ul>
+  <li>For <code>Foo&lt;out T&gt;</code>, where <code>T</code> is a covariant type parameter with the upper bound <code>TUpper</code>, <code>Foo&lt;*&gt;</code> is equivalent to <code>Foo&lt;out TUpper&gt;</code>. It means that when the <code>T</code> is unknown you can safely <em>read</em> values of <code>TUpper</code> from <code>Foo&lt;*&gt;</code>.</li>
+  <li>For <code>Foo&lt;in T&gt;</code>, where <code>T</code> is a contravariant type parameter, <code>Foo&lt;*&gt;</code> is equivalent to <code>Foo&lt;in Nothing&gt;</code>. It means there is nothing you can <em>write</em> to <code>Foo&lt;*&gt;</code> in a safe way when <code>T</code> is unknown.</li>
+  <li>For <code>Foo&lt;T&gt;</code>, where <code>T</code> is an invariant type parameter with the upper bound <code>TUpper</code>, <code>Foo&lt;*&gt;</code> is equivalent to <code>Foo&lt;out TUpper&gt;</code> for reading values and to <code>Foo&lt;in Nothing&gt;</code> for writing values.</li>
+</ul>
+
+<p>If a generic type has several type parameters each of them can be projected independently.
+For example, if the type is declared as <code>interface Function&lt;in T, out U&gt;</code> we can imagine the following star-projections:</p>
+
+<ul>
+  <li><code>Function&lt;*, String&gt;</code> means <code>Function&lt;in Nothing, String&gt;</code>;</li>
+  <li><code>Function&lt;Int, *&gt;</code> means <code>Function&lt;Int, out Any?&gt;</code>;</li>
+  <li><code>Function&lt;*, *&gt;</code> means <code>Function&lt;in Nothing, out Any?&gt;</code>.</li>
+</ul>
 
 <p><em>注记</em>：星预测很像Java中的raw类型，但是比raw类型更加安全。</p>
 

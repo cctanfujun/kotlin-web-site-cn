@@ -1560,11 +1560,11 @@
         <h1 id="inline">内联函数 inline<a href="#inline" class="anchor"></a></h1>
 
 <p>使用<a href="lambdas.html">高阶函数</a>会带来一些运行时间效率的损失：每一个函数都是一个对象，并且都会捕获一个闭包。
-即一些在函数体内会被访问的变量。
-内存分配(对于函数对象和类)和虚拟调用引入运行时间开销。</p>
+即那些在函数体内会被访问的变量。
+内存分配(对于函数对象和类)和虚拟调用会引入运行时间开销。</p>
 
-<p>但是在许多情况下通过内联化 lambda 表达式可以降低这类的开销。
-我们通过下面的示例函数来分析上面这些内容。如，<code>lock()</code> 函数可以被很容易的在申明调用时被内联化。</p>
+<p>但是在许多情况下通过内联化 lambda 表达式可以消除这类的开销。
+我们通过下面的示例函数来分析上面这些内容。如，<code>lock()</code> 函数可以被很容易地在调用点被内联。考虑下面的例子：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">lock</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="p">{</span> <span class="n">foo</span><span class="p">()</span> <span class="p">}</span></code></pre>
 
@@ -1580,22 +1580,21 @@
 
 <p>这个不是我们在一开始时候想要的么？</p>
 
-<p>为了让编译器做这个，我们需要在<code>lock()</code>函数前面加上<code>inline</code>:</p>
+<p>为了让编译器做这个，我们需要在<code>lock()</code>函数前面加上<code>inline</code>修饰符:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">inline</span> <span class="k">fun</span> <span class="nf">lock</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">lock</span><span class="p">:</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">body</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">):</span> <span class="n">T</span> <span class="p">{</span>
   <span class="c1">// ...</span>
 <span class="p">}</span></code></pre>
 
-<p><code>inline</code>关键字注释会影响函数体本身以及传递过来的lambdas: 这些所都会被内联到
+<p><code>inline</code>修饰符会影响函数体本身以及传递过来的lambdas: 所有的这些会被内联到
 调用点。</p>
 
 <p>内联本身有时会引起生成的代码数量增加，但是如果我们使用得当(不要内联大的函数)。它将在
-性能上有所提升，尤其是在极其巨大的调用循环中。</p>
+性能上有所提升，尤其是在超多态(megamorphic)调用点的循环中。</p>
 
 <h2 id="noinline">禁止内联（noinline）<a href="#noinline" class="anchor"></a></h2>
 
-<p>为了预防有时候你只希望一部分的lambdas传递到一个内联函数后背内联，你可以把一些你的函数
-参数用 <code>noinline</code> 修饰:</p>
+<p>为了预防 有时候你只希望被（作为参数）传递到一个内联函数的lamdas 只有一些被内联，你可以用 <code>noinline</code> 修饰符标记你的参数:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">inline</span> <span class="k">fun</span> <span class="nf">foo</span><span class="p">(</span><span class="n">inlined</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Unit</span><span class="p">,</span> <span class="n">noinline</span> <span class="n">notInlined</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">Unit</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...</span>
@@ -1604,15 +1603,15 @@
 <p>可以内联的lambdas只能在内联函数内部被调用或者被当作一个可内联的参数传递。
 但是通过 <code>noinline</code> 我们可以把它变化成任何的方式：储存在指定地点，传递它等等。</p>
 
-<p>需要注意的是，如果一个内联函数没有可以内联的函数变量并且没有
-<a href="#reified-type-parameters">泛型变量</a>, 编译器会产生一个警告。因为内联一个这样的函数
-很可能是无意义的(你可以无视这个警告如果你确定内联是必须的).</p>
+<p>需要注意的是，如果一个内联函数没有可以内联的函数参数并且没有
+<a href="#reified-type-parameters">泛型变量</a>, 编译器会产生一个警告。因为内联这样的函数
+很可能是无意义的(你可以supress这个警告如果你确定内联是必须的).</p>
 
-<h2 id="section">非本地的返回<a href="#section" class="anchor"></a></h2>
+<h2 id="non-local">非本地（Non-local）的返回<a href="#non-local" class="anchor"></a></h2>
 
-<p>在Kotlin中，我们只能使用一个普通的，无限制的<code>return</code>来退出一个命名的函数或者匿名函数。
+<p>在Kotlin中，我们只能使用一个普通的，无限制的<code>return</code>来退出一个有名的函数或者匿名函数。
 这个意味着为了退出一个lambda,我们不得不用一个 <a href="returns.html#return-at-labels">标签</a>,同时 在一个
-lambda中<code>return</code>单独出现时不允许的，因为一个lambda不可能让完整的函数返回:</p>
+lambda中<code>return</code>单独出现时不允许的，因为一个lambda不可能让外围的函数返回:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">ordinaryFunction</span> <span class="p">{</span>
@@ -1620,7 +1619,7 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<p>但是如果函数和lambda被传到一个内联函数中，return也可以被内联。于是下面就是允许的：</p>
+<p>但是如果lambda所传递到的函数是内联的，那么return也会被内联。于是下面就是允许的：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="n">inlineFunction</span> <span class="p">{</span>
@@ -1628,8 +1627,8 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<p>这样的返回(在lambda中，但是退出闭包的函数)被称作<em>non-local</em>返回。我们把
-这种排序构造用在循环中。通常这些内联函数是闭合的：</p>
+<p>这样的返回(在lambda中，但是退出封闭的函数)被称作<em>non-local</em>返回。我们把
+这种排序构造用在循环中。通常这些内联函数是封闭的：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">hasZeros</span><span class="p">(</span><span class="n">ints</span><span class="p">:</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;):</span> <span class="n">Boolean</span> <span class="p">{</span>
   <span class="n">ints</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span>
@@ -1638,8 +1637,8 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
   <span class="k">return</span> <span class="k">false</span>
 <span class="p">}</span></code></pre>
 
-<p>注意有些内联函数可能会不直接从在函数体中调用被作为参数传递过来的lambdas，
-而从其他执行语句中调用，像一个本地对象或者一个嵌套函数。在这种情况下，非本地的控制流程
+<p>注意有些内联函数可能会不直接地在函数体中调用那些被作为参数传递过来的lambdas，
+而从其他执行上下文中调用，比如一个本地对象或者一个嵌套函数。在这种情况下， non-local的控制流程
 也会被lambdas禁止。为了标识这种情况，lambda参数需要
 以<code>crossinline</code> 修饰:</p>
 
@@ -1654,9 +1653,9 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
   <p><code>break</code> 和 <code>continue</code> 在内联的lambdas还不能使用, 但是我们正在计划支持他们。</p>
 </blockquote>
 
-<h2 id="section-1">泛型变量<a href="#section-1" class="anchor"></a></h2>
+<h2 id="section">泛型变量<a href="#section" class="anchor"></a></h2>
 
-<p>有时候我们需要访问一个作为参数传递过来的变量类型：</p>
+<p>有时候我们需要访问一个作为参数传递过来的一个类型：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="err">&lt;</span><span class="nf">T</span><span class="p">&gt;</span> <span class="n">TreeNode</span><span class="p">.</span><span class="n">findParentOfType</span><span class="p">(</span><span class="n">clazz</span><span class="p">:</span> <span class="n">Class</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;):</span> <span class="n">T</span><span class="p">?</span> <span class="p">{</span>
     <span class="k">var</span> <span class="py">p</span> <span class="p">=</span> <span class="n">parent</span>
@@ -1667,8 +1666,8 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
     <span class="k">return</span> <span class="n">p</span> <span class="k">as</span> <span class="n">T</span>
 <span class="p">}</span></code></pre>
 
-<p>在这里我们访问一个树并且检查每个节点是不是特定的类型。
-这都没有问题，但是访问点并不理想：</p>
+<p>在这里我们向上遍历一棵树并且检查每个节点是不是特定的类型。
+这都没有问题，但是函数调用点十分不优雅：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">myTree</span><span class="p">.</span><span class="n">findParentOfType</span><span class="p">(</span><span class="n">MyTreeNodeType</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span></code></pre>
 
@@ -1686,9 +1685,10 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
     <span class="k">return</span> <span class="n">p</span> <span class="k">as</span> <span class="n">T</span>
 <span class="p">}</span></code></pre>
 
-<p>我们用泛型修饰符<code>reified</code>表示变量类型，于是现在它在函数内部
-就可以像正常函数一样的访问了。既然这个函数是内联的，没有必须的反射，一般的运算符 <code>!is</code>
-和 <code>as</code>就开始工作. 同时，我们也可以这样调用它: <code>myTree.findParentOfType&lt;MyTreeNodeType&gt;()</code>.</p>
+<p>我们用泛型修饰符<code>reified</code>来修饰这个类型参数，现在它就像一个普通的类一样，能在函数内部被正常访问了。
+因为这个函数是内联的，不需要反射，一般的运算符 <code>!is</code>
+和 <code>as</code>就可以工作了。 此外，我们可以像上面说的调用它:
+<code>myTree.findParentOfType&lt;MyTreeNodeType&gt;()</code>.</p>
 
 <p>虽然反射在很多情况下不一定需要，我们还是可以在泛型参数里使用它：</p>
 
@@ -1698,7 +1698,7 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
   <span class="n">println</span><span class="p">(</span><span class="n">membersOf</span><span class="p">&lt;</span><span class="n">StringBuilder</span><span class="p">&gt;().</span><span class="n">joinToString</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">))</span>
 <span class="p">}</span></code></pre>
 
-<p>正常的函数 (没有被标记为内联) 不能够有泛型参数.
+<p>普通的函数 (没有被标记为内联) 不能够有泛型参数.
 一个没有一个运行时表示的类型 (例如一个非泛型参数或者一个虚构类型如 <code>Nothing</code>)
 不能被用做泛型参数的变量。</p>
 
@@ -1706,7 +1706,7 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
 
 <hr />
 
-<p>翻译By EasonZhou</p>
+<p>翻译By EasonZhou ， <a href="https://github.com/pecpwee">pecpwee</a></p>
 
     </article>
 </div>
