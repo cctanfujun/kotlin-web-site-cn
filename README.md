@@ -72,7 +72,7 @@
 |using-ant.md|**未翻译**||  
 |using-gradle.md|已翻译|[chiahaolu](https://github.com/chiahaolu)|  
 |kotlin-osgi.md|**未翻译**||  
-|faq.md|**未翻译**||  
+|faq.md|已翻译|[灰蓝天际](https://github.com/hltj)|  
 |comparison-to-java.md|已翻译|[chiahaolu](https://github.com/chiahaolu)|  
 |comparison-to-scala.md|已翻译||  
 
