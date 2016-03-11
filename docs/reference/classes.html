@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-    <title>Classes and Inheritance - Kotlin Programming Language</title>
+    <title>类和继承 - Kotlin Programming Language</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/kotlin-web-site-cn/assets/images/favicon.ico" type="image/x-icon"/>
@@ -21,7 +21,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Classes and Inheritance" />
+<meta property="og:title" content="类和继承" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/classes.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
@@ -33,7 +33,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Classes and Inheritance">
+<meta name="twitter:title" content="类和继承">
 
 <meta name="twitter:description" content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 
@@ -1778,16 +1778,16 @@ Kotlin与通过参数构造函数创建类的实例，如使用Jackson或JPA库�
 <p>类和其中的某些实现可以声明为<em>abstract</em>{：.keyword}。
 抽象成员在本类中可以不用实现。。
 &gt; ~~ 因此，当一些子类继承一个抽象的成员，它并不算是一个实现：~~
-&gt; 
+&gt;
 &gt; <code>kotlin
 &gt; abstract class A {
 &gt;   abstract fun f()
 &gt; }
-&gt; 
+&gt;
 &gt; interface B {
 &gt;   open fun f() { print("B") }
 &gt; }
-&gt; 
+&gt;
 &gt; class C() : A(), B {
 &gt;   // We are not required to override f()
 &gt; }
@@ -1818,15 +1818,11 @@ Kotlin与通过参数构造函数创建类的实例，如使用Jackson或JPA库�
 你就可以在Java/ C＃中调用与它的成员方法相同的语法的静态方法，只使用类名作为一个
 修饰语。</p>
 
-<h2 id="sealed-classes">Sealed Classes<a href="#sealed-classes" class="anchor"></a></h2>
+<h2 id="section-11">密封类<a href="#section-11" class="anchor"></a></h2>
 
-<p>Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a
-limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values
-for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass
-of a sealed class can have multiple instances which can contain state.</p>
+<p>当一个值类型只能限制于某个类型范围内，而且不能有其他子类的情况下，我们就可以使用密封类。在某种意义上来说，密封类其实是枚举的扩展：一个枚举的类型也受到严格限制，但是每个枚举常量都仅仅作为单例存在，而一个密封类的子类是可以有多个包含状态的子类的。</p>
 
-<p>To declare a sealed class, you put the <code>sealed</code> modifier before the name of the class. A sealed class can have
-subclasses, but all of them must be nested inside the declaration of the sealed class itself.</p>
+<p>要声明一个密封类，需要在类名前面添加 <code>sealed</code>  修饰符，虽然密封类也可以有子类，但是所以子类声明都必须嵌套在这个密封类中。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">sealed</span> <span class="k">class</span> <span class="nc">Expr</span> <span class="p">{</span>
     <span class="k">class</span> <span class="nc">Const</span><span class="p">(</span><span class="k">val</span> <span class="py">number</span><span class="p">:</span> <span class="n">Double</span><span class="p">)</span> <span class="p">:</span> <span class="n">Expr</span><span class="p">()</span>
@@ -1834,19 +1830,16 @@ subclasses, but all of them must be nested inside the declaration of the sealed 
     <span class="k">object</span> <span class="nc">NotANumber</span> <span class="p">:</span> <span class="n">Expr</span><span class="p">()</span>
 <span class="p">}</span></code></pre>
 
-<p>Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily inside
-the declaration of the sealed class.</p>
+<p>值得注意的是一个密封类的子类的继承者（间接继承）可以在任何地方声明，不一定要在这个密封类中声明。</p>
 
-<p>The key benefit of using sealed classes comes into play when you use them in a <a href="control-flow.html#when-expression"><code>when</code> expression</a>. If it’s possible
-to verify that the statement covers all cases, you don’t need to add an <code>else</code> clause to the statement.</p>
+<p>使用密封类的关键好处在于使用<a href="control-flow.html#when-expression"><code>when</code> 表达式</a> 的时候，可以只使用密封类即可覆盖所有可能的情况，不需要一个 <code>else</code>语句去排除其他情况。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">:</span> <span class="n">Expr</span><span class="p">):</span> <span class="n">Double</span> <span class="p">=</span> <span class="k">when</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">is</span> <span class="n">Const</span> <span class="p">-&gt;</span> <span class="n">expr</span><span class="p">.</span><span class="n">number</span>
     <span class="k">is</span> <span class="n">Sum</span> <span class="p">-&gt;</span> <span class="n">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">.</span><span class="n">e1</span><span class="p">)</span> <span class="p">+</span> <span class="n">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">.</span><span class="n">e2</span><span class="p">)</span>
     <span class="n">NotANumber</span> <span class="p">-&gt;</span> <span class="n">Double</span><span class="p">.</span><span class="n">NaN</span>
-    <span class="c1">// the `else` clause is not required because we&#39;ve covered all the cases</span>
+    <span class="c1">// 我们在这里不需要使用 else 语句，因为我们已经覆盖到了所有的情况。</span>
 <span class="p">}</span></code></pre>
-
 
     </article>
 </div>

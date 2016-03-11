@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-    <title>Reflection - Kotlin Programming Language</title>
+    <title>反射 - Kotlin Programming Language</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/kotlin-web-site-cn/assets/images/favicon.ico" type="image/x-icon"/>
@@ -21,7 +21,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Reflection" />
+<meta property="og:title" content="反射" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/reflection.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
@@ -33,7 +33,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Reflection">
+<meta name="twitter:title" content="反射">
 
 <meta name="twitter:description" content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 
@@ -1588,7 +1588,7 @@ Jar 文件(<code>kotlin-reflect.jar</code>).这样做减小了不使用反射的
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">isOdd</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span> <span class="p">%</span> <span class="m">2</span> <span class="p">!=</span> <span class="m">0</span></code></pre>
 
-<p>我们可以直接调用(<code>isOdd(5)</code>), 也可以把它作为一个值传给其他函数. 
+<p>我们可以直接调用(<code>isOdd(5)</code>), 也可以把它作为一个值传给其他函数.
 我们使用<code>::</code>操作符实现:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">numbers</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
@@ -1599,7 +1599,7 @@ Jar 文件(<code>kotlin-reflect.jar</code>).这样做减小了不使用反射的
 <p>注意现在<code>::</code>不能被使用来重载函数. 将来, 我们计划
 提供一个语法明确参数类型这样就可以使用明确的重载函数了。</p>
 
-<p>如果我们需要使用类成员或者一个扩展方法，它必须是有权访问的, 
+<p>如果我们需要使用类成员或者一个扩展方法，它必须是有权访问的,
 例如<code>String::toCharArray</code>带着一个<code>String</code>: <code>String.() -&gt; CharArray</code>类型扩展函数.</p>
 
 <h3 id="section-3">例子: 函数组合<a href="#section-3" class="anchor"></a></h3>
@@ -1669,9 +1669,9 @@ Jar 文件(<code>kotlin-reflect.jar</code>).这样做减小了不使用反射的
 比如，想找到一个备用字段或者 java getter 方法，你可以这样写：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">kotlin.reflect.jvm.*</span>
- 
+
 <span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="k">val</span> <span class="py">p</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span>
- 
+
 <span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Array</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;)</span> <span class="p">{</span>
     <span class="n">println</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">p</span><span class="p">.</span><span class="n">javaGetter</span><span class="p">)</span> <span class="c1">// prints &quot;public final int A.getP()&quot;</span>
     <span class="n">println</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">p</span><span class="p">.</span><span class="n">javaField</span><span class="p">)</span>  <span class="c1">// prints &quot;private final int A.p&quot;</span>
@@ -1684,7 +1684,7 @@ Jar 文件(<code>kotlin-reflect.jar</code>).这样做减小了不使用反射的
 <h2 id="section-5">构造函数引用<a href="#section-5" class="anchor"></a></h2>
 
 <p>构造函数可以像属性和方法那样引用. 它们可以使用在任何一个函数类型的对象的地方，
-期望得到相同参数的构造函数，并返回一个适当类型的对象. 
+期望得到相同参数的构造函数，并返回一个适当类型的对象.
 构造函数使用<code>::</code>操作符加类名引用.考虑如下函数，
 需要一个无参数函数返回类型是<code>Foo</code>:</p>
 

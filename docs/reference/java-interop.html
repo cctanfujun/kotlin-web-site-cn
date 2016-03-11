@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-    <title>Calling Java from Kotlin - Kotlin Programming Language</title>
+    <title>在Kotlin中调用Java代码 - Kotlin Programming Language</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/kotlin-web-site-cn/assets/images/favicon.ico" type="image/x-icon"/>
@@ -21,7 +21,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Calling Java from Kotlin" />
+<meta property="og:title" content="在Kotlin中调用Java代码" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/java-interop.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
@@ -33,7 +33,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Calling Java from Kotlin">
+<meta name="twitter:title" content="在Kotlin中调用Java代码">
 
 <meta name="twitter:description" content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 
@@ -1914,7 +1914,7 @@ if (a is List&lt;*&gt;) // 可以: 不确保List里的内容
 
 <p>当编译成jvm字节码的时候，编译器会优化对数组的访问，确保不会产生额外的负担。</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">array</span> <span class="p">=</span> <span class="n">array</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">)</span>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">array</span> <span class="p">=</span> <span class="n">arrayOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">)</span>
 <span class="n">array</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="p">=</span> <span class="n">array</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="p">*</span> <span class="m">2</span> <span class="c1">// 不会生成对get() 和 set()的调用</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span> <span class="c1">// 不会创建迭代器</span>
   <span class="n">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></code></pre>
@@ -2026,7 +2026,7 @@ Calling Java methods using the infix call syntax is not allowed.</p>
 
 <h2 id="java-">Java 反射<a href="#java-" class="anchor"></a></h2>
 
-<p>Java反射可以用在kotlin类上，反之亦然。前面提过，你可以 <code>instance.javaClass</code> 或者 
+<p>Java反射可以用在kotlin类上，反之亦然。前面提过，你可以 <code>instance.javaClass</code> 或者
 <code>ClassName::class.java</code> 开始基于 <code>java.lang.Class</code> 的java反射操作。</p>
 
 <p>Other supported cases include acquiring a Java getter/setter method or a backing field for a Kotlin property, a <code>KProperty</code> for a Java field, a Java method or constructor for a <code>KFunction</code> and vice versa.</p>

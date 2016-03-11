@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-    <title>Control Flow - Kotlin Programming Language</title>
+    <title>控制流 - Kotlin Programming Language</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/kotlin-web-site-cn/assets/images/favicon.ico" type="image/x-icon"/>
@@ -21,7 +21,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Control Flow" />
+<meta property="og:title" content="控制流" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/control-flow.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
@@ -33,7 +33,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Control Flow">
+<meta name="twitter:title" content="控制流">
 
 <meta name="twitter:description" content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 
@@ -1565,29 +1565,29 @@
 因此就不需要三元运算符（条件 ? 然后 : 否则），因为普通的 <em class="keyword">if</em> 就能胜任这个角色。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// 传统用法</span>
-<span class="k">var</span> <span class="py">max</span> <span class="p">=</span> <span class="n">a</span> 
-<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="p">&lt;</span> <span class="n">b</span><span class="p">)</span> 
-  <span class="n">max</span> <span class="p">=</span> <span class="n">b</span> 
- 
-<span class="c1">// 有 else </span>
+<span class="k">var</span> <span class="py">max</span> <span class="p">=</span> <span class="n">a</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="p">&lt;</span> <span class="n">b</span><span class="p">)</span>
+  <span class="n">max</span> <span class="p">=</span> <span class="n">b</span>
+
+<span class="c1">// 有 else</span>
 <span class="k">var</span> <span class="py">max</span><span class="p">:</span> <span class="n">Int</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="p">&gt;</span> <span class="n">b</span><span class="p">)</span> 
-  <span class="n">max</span> <span class="p">=</span> <span class="n">a</span> 
-<span class="k">else</span> 
-  <span class="n">max</span> <span class="p">=</span> <span class="n">b</span> 
- 
+<span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="p">&gt;</span> <span class="n">b</span><span class="p">)</span>
+  <span class="n">max</span> <span class="p">=</span> <span class="n">a</span>
+<span class="k">else</span>
+  <span class="n">max</span> <span class="p">=</span> <span class="n">b</span>
+
 <span class="c1">// 作为表达式</span>
 <span class="k">val</span> <span class="py">max</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="p">&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="n">a</span> <span class="k">else</span> <span class="n">b</span></code></pre>
 
 <p><em class="keyword">if</em>的分支可以是代码块，最后的表达式作为该块的值：</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">max</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="p">&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> 
-    <span class="n">print</span><span class="p">(</span><span class="s">&quot;Choose a&quot;</span><span class="p">)</span> 
-    <span class="n">a</span> 
-  <span class="p">}</span> 
-  <span class="k">else</span> <span class="p">{</span> 
-    <span class="n">print</span><span class="p">(</span><span class="s">&quot;Choose b&quot;</span><span class="p">)</span> 
-    <span class="n">b</span> 
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">max</span> <span class="p">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="p">&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&quot;Choose a&quot;</span><span class="p">)</span>
+    <span class="n">a</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s">&quot;Choose b&quot;</span><span class="p">)</span>
+    <span class="n">b</span>
   <span class="p">}</span></code></pre>
 
 <p>如果你使用 <em class="keyword">if</em> 作为表达式而不是语句（例如：返回它的值或者
@@ -1720,7 +1720,6 @@
 <h2 id="breakcontinue">循环中的Break和continue<a href="#breakcontinue" class="anchor"></a></h2>
 
 <p>在循环中 Kotlin 支持传统的 <em class="keyword">break</em> 和 <em class="keyword">continue</em> 操作符。参见<a href="returns.html">返回和跳转</a>。</p>
-
 
     </article>
 </div>

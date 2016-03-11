@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-    <title>Visibility Modifiers - Kotlin Programming Language</title>
+    <title>可见性修饰符 - Kotlin Programming Language</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/kotlin-web-site-cn/assets/images/favicon.ico" type="image/x-icon"/>
@@ -21,7 +21,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Visibility Modifiers" />
+<meta property="og:title" content="可见性修饰符" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/visibility-modifiers.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
@@ -33,7 +33,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Visibility Modifiers">
+<meta name="twitter:title" content="可见性修饰符">
 
 <meta name="twitter:description" content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 
@@ -1621,7 +1621,7 @@
 
 <span class="k">public</span> <span class="k">var</span> <span class="py">bar</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">5</span> <span class="c1">// property is visible everywhere</span>
     <span class="k">private</span> <span class="k">set</span>         <span class="c1">// setter is visible only in this package and subpackages</span>
-    
+
 <span class="k">internal</span> <span class="k">val</span> <span class="py">baz</span> <span class="p">=</span> <span class="m">6</span>    <span class="c1">// visible inside the same module, the modifier can be omitted    </span></code></pre>
 
 <h2 id="section-2">类和接口<a href="#section-2" class="anchor"></a></h2>
@@ -1652,7 +1652,7 @@
     <span class="k">protected</span> <span class="k">val</span> <span class="py">b</span> <span class="p">=</span> <span class="m">2</span>
     <span class="k">val</span> <span class="py">c</span> <span class="p">=</span> <span class="m">3</span> <span class="c1">// internal by default</span>
     <span class="k">public</span> <span class="k">val</span> <span class="py">d</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">4</span> <span class="c1">// return type required</span>
-    
+
     <span class="k">protected</span> <span class="k">class</span> <span class="nc">Nested</span> <span class="p">{</span>
         <span class="k">public</span> <span class="k">val</span> <span class="py">e</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">5</span>
     <span class="p">}</span>
@@ -1667,7 +1667,7 @@
 <span class="k">class</span> <span class="nc">Unrelated</span><span class="p">(</span><span class="n">o</span><span class="p">:</span> <span class="n">Outer</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// o.a, o.b are not visible</span>
     <span class="c1">// o.c and o.d are visible (same module)</span>
-    <span class="c1">// Outer.Nested is not visible, and Nested::e is not visible either </span>
+    <span class="c1">// Outer.Nested is not visible, and Nested::e is not visible either</span>
 <span class="p">}</span></code></pre>
 
 <h3 id="section-3">构造函数<a href="#section-3" class="anchor"></a></h3>

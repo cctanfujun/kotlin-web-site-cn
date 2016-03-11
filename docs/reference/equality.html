@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-    <title>Equality - Kotlin Programming Language</title>
+    <title>枚举类 - Kotlin Programming Language</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/kotlin-web-site-cn/assets/images/favicon.ico" type="image/x-icon"/>
@@ -21,7 +21,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Equality" />
+<meta property="og:title" content="枚举类" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/equality.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
@@ -33,7 +33,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Equality">
+<meta name="twitter:title" content="枚举类">
 
 <meta name="twitter:description" content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 
@@ -1568,10 +1568,10 @@
 
 <h2 id="section-1">引用相等<a href="#section-1" class="anchor"></a></h2>
 
-<p>引用相等使用<code>===</code>操作符判断(它的否定是<code>!==</code>). <code>a === b</code> 
+<p>引用相等使用<code>===</code>操作符判断(它的否定是<code>!==</code>). <code>a === b</code>
 只有当<code>a</code>和<code>b</code>指向同一个对象才返回true。
 &gt; ~~另外，你可以使用内联函数 identityEquals() 判断引用相等：~~
-&gt; 
+&gt;
 &gt; <code>kotlin
 &gt; a.identityEquals(b)
 &gt; // or
@@ -1588,7 +1588,6 @@
 <p>就是说如果 <code>a</code> 不是 <code>null</code> 则调用 <code>equals(Any?)</code> 函数，否则（即 <code>a</code> 是 <code>null</code>）检查 b 的是不是 <code>null</code> 引用。</p>
 
 <p>注意当与 <code>null</code> 比较时完全没有必要为优化你的代码而将 <code>a == null</code> 写成 <code>a === null</code> 编译器会自动帮你做的。</p>
-
 
     </article>
 </div>

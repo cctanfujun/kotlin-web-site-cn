@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-    <title>Dynamic Type - Kotlin Programming Language</title>
+    <title>动态类型 - Kotlin Programming Language</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/kotlin-web-site-cn/assets/images/favicon.ico" type="image/x-icon"/>
@@ -21,7 +21,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Dynamic Type" />
+<meta property="og:title" content="动态类型" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/dynamic-type.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
@@ -33,7 +33,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Dynamic Type">
+<meta name="twitter:title" content="动态类型">
 
 <meta name="twitter:description" content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 
@@ -1574,7 +1574,7 @@
 <p><code>dynamic</code>最奇特的特性就是可以在<code>dynamic</code>变量上调用<strong>任何</strong>属性或<strong>任何</strong>函数：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">dyn</span><span class="p">.</span><span class="n">whatever</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="n">dyn</span><span class="p">)</span> <span class="c1">// &#39;whatever&#39; is not defined anywhere</span>
-<span class="n">dyn</span><span class="p">.</span><span class="n">whatever</span><span class="p">(*</span><span class="n">array</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">))</span></code></pre>
+<span class="n">dyn</span><span class="p">.</span><span class="n">whatever</span><span class="p">(*</span><span class="n">arrayOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">))</span></code></pre>
 
 <p>在JavaScript平台这段代码被编译为”as is”: <code>dyn.whatever(1)</code>在Kotlin中<code>dyn.whatever(1)</code> 生成JavaScript 代码.</p>
 
@@ -1589,7 +1589,6 @@
 <span class="p">}</span></code></pre>
 
 <p>更多细节, <a href="https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md">查看</a>.</p>
-
 
     </article>
 </div>
