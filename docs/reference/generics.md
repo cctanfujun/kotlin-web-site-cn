@@ -27,7 +27,7 @@ val box: Box<Int> = Box<Int>(1)
 val box = Box(1) // 1 has type Int, so the compiler figures out that we are talking about Box<Int>
 ```
 
-## 型变Variance
+## 协变Variance
 
 Java的变量类型中，最为精妙的是通配符（wildcards）类型(详见 [Java Generics FAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html))。
 但是Kotlin中并不具备该类型，替而代之的是：声明设置差异（declaration-site variance）与类型推测。
@@ -86,7 +86,7 @@ interface Collection<E> ... {
 从中读取`Object`也没问题 。反过来，如果只能向集合中_放入_元素，就可以用
 `Object`集合并向其中放入`String`：在Java中有`List<? super String>`是`List<Object>`的**超类**。
 
-后面的情况被称为**“抗变性”（contravariance）**，这种性质是的只可以调用方法时利用String为`List<? super String>` 的参数。
+后面的情况被称为**“逆变性”（contravariance）**，这种性质是的只可以调用方法时利用String为`List<? super String>` 的参数。
 （例如，可以调用`add(String)`或者`set(int, String)`),或者
 当调用函数返回`List<T>`中的`T`，你获取的并非一个`String`而是一个 `Object`。
 
@@ -98,7 +98,7 @@ Joshua Bloch成这类为只可以从**Producers(生产者)**处 **读取**的对
 该对象是**不变的**。例如，可以调用 `clear()`方法移除列表里的所有元素，因为 `clear()`方法
 不含任何参数。通配符类型唯一保证的仅仅是**类型安全**。不可变性完全是另一个话题了。
 
-### 声明处型变
+### 声明处协变
 
 假设有一个泛型接口`Source<T>` ，该接口中不存在将 `T` 作为参数的方法，只有返回值为 `T` 的方法：
 
@@ -121,7 +121,7 @@ void demo(Source<String> strs) {
 
 为了修正这一点，我们需要声明对象的类型为`Source<? extends Object>`，有一点无意义，因为我们可以像以前一下在该对象上调用所有相同的方法，所以复杂类型没有增加值。但是编译器并不可以理解。
 
-在Kotlin中，我们有一种途径向编译器解释该表达，称之为：**声明处型变**：我们可以标注源的**变量类型**为`T` 来确保它仅从`Source<T>`成员中**返回**（生产），并从不被消费。
+在Kotlin中，我们有一种途径向编译器解释该表达，称之为：**声明处协变**：我们可以标注源的**变量类型**为`T` 来确保它仅从`Source<T>`成员中**返回**（生产），并从不被消费。
 为此，我们提供**输出**修改：
 
 ``` kotlin
@@ -141,10 +141,10 @@ fun demo(strs: Source<String>) {
 简而言之，称类`C`是参数`T`中的**协变的**，或`T`是一个**协变**的参数类型。
 我们可以认为`C`是`T`的一个生产者，同时不是`T`的消费者。
 
-**out**修饰符叫做**型变注解**，同时由于它在参数类型位置被提供，所以我们讨论**声明处型变**。
-与Java的**使用处型变**相反，类型使用通配符使得类型协变。
+**out**修饰符叫做**协变注解**，同时由于它在参数类型位置被提供，所以我们讨论**声明处协变**。
+与Java的**使用处协变**相反，类型使用通配符使得类型协变。
 
-另外除了**out**，Kotlin又补充了一项型变注释：**in**。它是的变量类型**反变**：只可以被消费而不可以
+另外除了**out**，Kotlin又补充了一项协变注释：**in**。它是的变量类型**反变**：只可以被消费而不可以
 被生产。反变类的一个很好的例子是 `Comparable`：
 
 ``` kotlin
@@ -166,7 +166,7 @@ fun demo(x: Comparable<Number>) {
 
 ## 类型预测
 
-### 使用处型变：类型预测
+### 使用处协变：类型预测
 
 声明变量类型T为*out*是极为方便的，并且在运用子类型的过程中也没有问题。是的，当该类**可以**被仅限于返回`T`，但是如果**不可以**呢？
 一个很好的例子是 Array：
