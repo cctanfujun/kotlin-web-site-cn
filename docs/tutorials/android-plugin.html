@@ -26,7 +26,7 @@
 <meta property="og:url" content="https://kotlinlang.org/docs/tutorials/android-plugin.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
 
-<meta property="og:description" content="This tutorial describes how to use Kotlin Android Extensions to improve support for Android development">
+<meta property="og:description" content="This tutorial describes how to use Kotlin Android Extensions to improve support for Android development.">
 
 <meta property="og:site_name" content="Kotlin" />
 
@@ -35,7 +35,7 @@
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="Kotlin Android Extensions">
 
-<meta name="twitter:description" content="This tutorial describes how to use Kotlin Android Extensions to improve support for Android development">
+<meta name="twitter:description" content="This tutorial describes how to use Kotlin Android Extensions to improve support for Android development.">
 
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png ">
 <!-- Social Media tag Ends -->
@@ -143,6 +143,7 @@
         
     </div>
 </header>
+
 
     <div class="g-layout global-content">
         <div class="g-grid">
@@ -559,7 +560,7 @@
             
         </table>
         
-            This tutorial describes how to use Kotlin Android Extensions to improve support for Android development
+            This tutorial describes how to use Kotlin Android Extensions to improve support for Android development.
         <br/>
         <br/>
         
@@ -577,11 +578,12 @@ While there are several libraries available that provide solutions to this probl
 <pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// Using R.layout.activity_main from the main source set</span>
 <span class="k">import</span> <span class="nn">kotlinx.android.synthetic.main.activity_main.*</span>
 
-<span class="k">public</span> <span class="k">class</span> <span class="nc">MyActivity</span> <span class="p">:</span> <span class="n">Activity</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">MyActivity</span> <span class="p">:</span> <span class="n">Activity</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle</span><span class="p">?)</span> <span class="p">{</span>
         <span class="k">super</span><span class="p">.</span><span class="n">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
         <span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">layout</span><span class="p">.</span><span class="n">activity_main</span><span class="p">)</span>
-        <span class="n">textView</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">)</span> <span class="c1">// Instead of findView(R.id.textView) as TextView</span>
+        <span class="n">textView</span><span class="p">.</span><span class="n">setText</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">)</span>
+        <span class="c1">// Instead of findView(R.id.textView) as TextView</span>
     <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
@@ -597,7 +599,8 @@ While there are several libraries available that provide solutions to this probl
 
 <p>All you need is to enable the Android Extensions Gradle plugin in your project-local <code>build.gradle</code> file:</p>
 
-<pre><code class="code-block _highlighted lang_groovy"><span class="n">apply</span> <span class="nl">plugin:</span> <span class="s1">&#39;kotlin-android-extensions&#39;</span></code></pre>
+<pre>apply plugin: 'kotlin-android-extensions'
+</pre>
 
 <h4 id="importing-synthetic-properties">Importing synthetic properties</h4>
 

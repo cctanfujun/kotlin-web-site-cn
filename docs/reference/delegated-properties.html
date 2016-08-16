@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1187,31 +1188,12 @@
 <pre>&lt;no name&gt; -&gt; first
 first -&gt; second
 </pre>
+
 <p>如果你想有能力来截取和“否决”它分派的事件，就使用 <code>vetoable()</code> 取代 <code>observable()</code>.
 被传递给 <code>vetoable</code> 的handler会在属性被赋新的值_之前_执行</p>
 
-<blockquote>
-  <p><del>### 非空 Not-Null</del></p>
+<h2 id="map-">把属性储存在 Map 中<a href="#map-" class="anchor"></a></h2>
 
-  <p>有时候我们有一个非空的值<em class="keyword">var</em>, 但是我们却没有合适的值去给构造器去初始化。
-例如，它必须被之后初始化。问题是在Kotlin中你不能有一个没有被初始化的非抽象属性：</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
-  <span class="k">var</span> <span class="py">bar</span><span class="p">:</span> <span class="n">Bar</span> <span class="c1">// ERROR: must be initialized</span>
-<span class="p">}</span></code></pre>
-
-  <p>我们可以用<em class="keyword">null</em>去初始化它,但是我们不得不在每次使用前检查一下。</p>
-
-  <p><code>Delegates.notNull()</code> 可以解决这个问题:</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
-  <span class="k">var</span> <span class="py">bar</span><span class="p">:</span> <span class="n">Bar</span> <span class="k">by</span> <span class="n">Delegates</span><span class="p">.</span><span class="n">notNull</span><span class="p">()</span>
-<span class="p">}</span></code></pre>
-
-  <p>如果这个属性在首次写入前进行读取，它就会抛出一个异常，写入后就正常了。</p>
-</blockquote>
-
-<h3 id="map">把属性储存在map中<a href="#map" class="anchor"></a></h3>
 <p>一个参加的用例是在一个map里存储属性的值。
 这经常出现在解析JSON或者做其他的“动态”的事情应用里头。
 在这样的情况下，你需要使用map的实例本身作为代理用于代理属性</p>

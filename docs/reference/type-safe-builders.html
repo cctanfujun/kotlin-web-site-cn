@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1312,27 +1313,6 @@ The receiver can be accessed through the <em class="keyword">this</em> keyword:<
     <span class="n">html</span><span class="p">.</span><span class="n">init</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">html</span>
 <span class="p">}</span></code></pre>
-
-<blockquote>
-  <p><del>### 附录.让Java类更好</del></p>
-
-  <p>上面的代码中有一段很好的：</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin">  <span class="k">class</span> <span class="nc">A</span><span class="p">()</span> <span class="p">:</span> <span class="n">BodyTag</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">var</span> <span class="py">href</span><span class="p">:</span> <span class="n">String</span>
-      <span class="k">get</span><span class="p">()</span> <span class="p">=</span> <span class="n">attributes</span><span class="p">[</span><span class="s">&quot;href&quot;</span><span class="p">]</span><span class="o">!!</span>
-      <span class="k">set</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="n">attributes</span><span class="p">[</span><span class="s">&quot;href&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="n">value</span> <span class="p">}</span>
-  <span class="p">}</span></code></pre>
-
-  <p>我们访问映射(Map) <code>attributes</code>的方式，是把它当作 “关联数组” (associate array)来访问的：用<code>[]</code>操作符。
-依照编译器的<a href="operator-overloading.html">惯例</a>)它被翻译成<code>get(K)</code>和<code>set(K, V)</code>，正好。
-但是我们说过，<code>attributes</code>是一个<em>Java</em><code>Map</code>，也就是说，它没有<code>set(K, V)</code>函数。(译注：Java的映射中的函数是<code>put(K, V)</code>)。
-在Kotlin中，这个问题很容易解决：</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin">  <span class="k">fun</span> <span class="err">&lt;</span><span class="nf">K</span><span class="p">,</span> <span class="n">V</span><span class="p">&gt;</span> <span class="n">Map</span><span class="p">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">&gt;.</span><span class="k">set</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">K</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">V</span><span class="p">)</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code></pre>
-
-  <p>所以我们只要给<code>Map</code>类添加一个<a href="extensions.html">扩展函数</a><code>set(K, V)</code>， 并委托<code>Map</code>类原有的<code>put(K, V)</code>函数，就可以让<em>Java</em>类使用Kotlin的操作符号了。</p>
-</blockquote>
 
     </article>
 </div>

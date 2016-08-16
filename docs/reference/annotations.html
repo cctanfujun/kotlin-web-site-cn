@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1098,18 +1099,8 @@ generated API documentation.</li>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<blockquote>
-  <p><del>在很多情况下，<code>@ </code>这个标志不是强制性使用的。它只是在当注解表达式或者本地声明时需要：</del></p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="n">fancy</span> <span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
-  <span class="n">fancy</span> <span class="k">fun</span> <span class="nf">baz</span><span class="p">(</span><span class="n">fancy</span> <span class="n">foo</span><span class="p">:</span> <span class="n">Int</span><span class="p">):</span> <span class="n">Int</span> <span class="p">{</span>
-    <span class="n">@fancy</span> <span class="k">fun</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">@fancy</span> <span class="m">1</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-</blockquote>
-
-<p>如果你需要注解类的主构造方法，你需要给构造方法的声明添加<em class="keyword">constructor</em>这个关键字，还有在前面添加注解：</p>
+<p>如果你需要注解类的主构造方法，你需要给构造方法的声明添加<em class="keyword">constructor</em>这个关键字
+，还有在前面添加注解：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">Foo</span> <span class="n">@Inject</span> <span class="n">constructor</span><span class="p">(</span><span class="n">dependency</span><span class="p">:</span> <span class="n">MyDependency</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// ...</span>
@@ -1151,9 +1142,22 @@ generated API documentation.</li>
 
 <span class="n">@Deprecated</span><span class="p">(</span><span class="s">&quot;This function is deprecated, use === instead&quot;</span><span class="p">,</span> <span class="n">ReplaceWith</span><span class="p">(</span><span class="s">&quot;this === other&quot;</span><span class="p">))</span></code></pre>
 
+<p>If you need to specify a class as an argument of an annotation, use a Kotlin class
+(<a href="/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>). The Kotlin compiler will
+automatically convert it to a Java class, so that the Java code will be able to see the annotations and arguments
+normally.</p>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">kotlin.reflect.KClass</span>
+
+<span class="k">annotation</span> <span class="k">class</span> <span class="nc">Ann</span><span class="p">(</span><span class="k">val</span> <span class="py">arg1</span><span class="p">:</span> <span class="n">KClass</span><span class="p">&lt;*&gt;,</span> <span class="k">val</span> <span class="py">arg2</span><span class="p">:</span> <span class="n">KClass</span><span class="p">&lt;</span><span class="k">out</span> <span class="n">Any</span><span class="p">?&gt;)</span>
+
+<span class="n">@Ann</span><span class="p">(</span><span class="n">String</span><span class="o">::</span><span class="k">class</span><span class="p">,</span> <span class="n">Int</span><span class="o">::</span><span class="k">class</span><span class="p">)</span> <span class="k">class</span> <span class="nc">MyClass</span></code></pre>
+
 <h3 id="lambdas">Lambdas<a href="#lambdas" class="anchor"></a></h3>
 
-<p>注解也可以用在lambda表达式中。这将会应用到 lambda 生成的<code>invoke()</code>方法。这对<a href="http://www.paralleluniverse.co/quasar/">Quasar</a>框架很有用，在这个框架中注解被用来并发控制</p>
+<p>注解也可以用在lambda表达式中。这将会应用到 lambda 生成的<code>invoke()</code>方法
+。这对<a href="http://www.paralleluniverse.co/quasar/">Quasar</a>框架很有用，
+在这个框架中注解被用来并发控制</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">annotation</span> <span class="k">class</span> <span class="nc">Suspendable</span>
 
@@ -1217,24 +1221,18 @@ being used. If there are multiple applicable targets, the first applicable targe
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">org.junit.Test</span>
 <span class="k">import</span> <span class="nn">org.junit.Assert.*</span>
+<span class="k">import</span> <span class="nn">org.junit.Rule</span>
+<span class="k">import</span> <span class="nn">org.junit.rules.*</span>
 
 <span class="k">class</span> <span class="nc">Tests</span> <span class="p">{</span>
+  <span class="c1">// apply @Rule annotation to property getter</span>
+  <span class="n">@get</span><span class="p">:</span><span class="n">Rule</span> <span class="k">val</span> <span class="py">tempFolder</span> <span class="p">=</span> <span class="n">TemporaryFolder</span><span class="p">()</span>
+
   <span class="n">@Test</span> <span class="k">fun</span> <span class="nf">simple</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">val</span> <span class="py">f</span> <span class="p">=</span> <span class="n">tempFolder</span><span class="p">.</span><span class="n">newFile</span><span class="p">()</span>
     <span class="n">assertEquals</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="n">getTheAnswer</span><span class="p">())</span>
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
-
-<blockquote>
-  <p><del>Java注解也可像用import修饰符重新命名：</del></p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">org.junit.Test</span> <span class="k">as</span> <span class="n">test</span>
-
-<span class="k">class</span> <span class="nc">Tests</span> <span class="p">{</span>
-  <span class="n">test</span> <span class="k">fun</span> <span class="nf">simple</span><span class="p">()</span> <span class="p">{</span>
-    <span class="p">...</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-</blockquote>
 
 <p>因为在Java里，注释的参数顺序不是明确的，你不能使用常规的方法
 调用语法传递的参数。相反的，你需要使用指定的参数语法。</p>
@@ -1268,13 +1266,15 @@ being used. If there are multiple applicable targets, the first applicable targe
 <pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// Kotlin</span>
 <span class="n">@AnnWithArrayValue</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">,</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">)</span> <span class="k">class</span> <span class="nc">C</span></code></pre>
 
-<p>如果你需要像注解参数一样指定一个类，使用一个Kotlin的类吧(<a href="/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>)。Kotlin编译器会自动把它转换成Java类，使得Java代码能正常看到注解和参数。</p>
+<p>For other arguments that have an array type, you need to use <code>arrayOf</code> explicitly:</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">kotlin.reflect.KClass</span>
+<pre><code class="code-block _highlighted lang_java"><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="nd">@interface</span> <span class="n">AnnWithArrayMethod</span> <span class="o">{</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="nf">names</span><span class="o">();</span>
+<span class="o">}</span></code></pre>
 
-<span class="k">annotation</span> <span class="k">class</span> <span class="nc">Ann</span><span class="p">(</span><span class="k">val</span> <span class="py">arg1</span><span class="p">:</span> <span class="n">KClass</span><span class="p">&lt;*&gt;,</span> <span class="k">val</span> <span class="py">arg2</span><span class="p">:</span> <span class="n">KClass</span><span class="p">&lt;</span><span class="k">out</span> <span class="n">Any</span><span class="p">?&gt;)</span>
-
-<span class="n">@Ann</span><span class="p">(</span><span class="n">String</span><span class="o">::</span><span class="k">class</span><span class="p">,</span> <span class="n">Int</span><span class="o">::</span><span class="k">class</span><span class="p">)</span> <span class="k">class</span> <span class="nc">MyClass</span></code></pre>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// Kotlin</span>
+<span class="n">@AnnWithArrayMethod</span><span class="p">(</span><span class="n">names</span> <span class="p">=</span> <span class="n">arrayOf</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">,</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">))</span> <span class="k">class</span> <span class="nc">C</span></code></pre>
 
 <p>注解实例的值被视为Kotlin的属性。</p>
 

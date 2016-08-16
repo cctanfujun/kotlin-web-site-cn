@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1100,8 +1101,18 @@ Jar 文件(<code>kotlin-reflect.jar</code>).这样做减小了不使用反射的
 
 <p>这里 <code>::isOdd</code>是一个函数类型的值 <code>(Int) -&gt; Boolean</code>.</p>
 
-<p>注意现在<code>::</code>不能被使用来重载函数. 将来, 我们计划
-提供一个语法明确参数类型这样就可以使用明确的重载函数了。</p>
+<p><code>::</code> can be used with overloaded functions when the expected type is known from the context.
+For example:</p>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">isOdd</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">=</span> <span class="n">x</span> <span class="p">%</span> <span class="m">2</span> <span class="p">!=</span> <span class="m">0</span>
+<span class="k">fun</span> <span class="nf">isOdd</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">=</span> <span class="n">s</span> <span class="p">==</span> <span class="s">&quot;brillig&quot;</span> <span class="p">||</span> <span class="n">s</span> <span class="p">==</span> <span class="s">&quot;slithy&quot;</span> <span class="p">||</span> <span class="n">s</span> <span class="p">==</span> <span class="s">&quot;tove&quot;</span>
+
+<span class="k">val</span> <span class="py">numbers</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">numbers</span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="o">::</span><span class="n">isOdd</span><span class="p">))</span> <span class="c1">// refers to isOdd(x: Int)</span></code></pre>
+
+<p>Alternatively, you can provide the necessary context by storing the method reference in a variable with an explicitly specified type:</p>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">predicate</span><span class="p">:</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">Boolean</span> <span class="p">=</span> <span class="o">::</span><span class="n">isOdd</span>   <span class="c1">// refers to isOdd(x: String)</span></code></pre>
 
 <p>如果我们需要使用类成员或者一个扩展方法，它必须是有权访问的,
 例如<code>String::toCharArray</code>带着一个<code>String</code>: <code>String.() -&gt; CharArray</code>类型扩展函数.</p>
@@ -1117,7 +1128,7 @@ Jar 文件(<code>kotlin-reflect.jar</code>).这样做减小了不使用反射的
 <p>它返回一个由俩个传递进去的函数的组合。
 现在你可以把它用在可调用的引用上了：</p>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">length</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">length</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span>
 
 <span class="k">val</span> <span class="py">oddLength</span> <span class="p">=</span> <span class="n">compose</span><span class="p">(</span><span class="o">::</span><span class="n">isOdd</span><span class="p">,</span> <span class="o">::</span><span class="n">length</span><span class="p">)</span>
 <span class="k">val</span> <span class="py">strings</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;ab&quot;</span><span class="p">,</span> <span class="s">&quot;abc&quot;</span><span class="p">)</span>
@@ -1160,7 +1171,7 @@ Jar 文件(<code>kotlin-reflect.jar</code>).这样做减小了不使用反射的
 <p>对于扩展属性:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">String</span><span class="p">.</span><span class="n">lastChar</span><span class="p">:</span> <span class="n">Char</span>
-  <span class="k">get</span><span class="p">()</span> <span class="p">=</span> <span class="k">this</span><span class="p">[</span><span class="n">size</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span>
+  <span class="k">get</span><span class="p">()</span> <span class="p">=</span> <span class="k">this</span><span class="p">[</span><span class="n">length</span> <span class="p">-</span> <span class="m">1</span><span class="p">]</span>
 
 <span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Array</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;)</span> <span class="p">{</span>
   <span class="n">println</span><span class="p">(</span><span class="n">String</span><span class="o">::</span><span class="n">lastChar</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">))</span> <span class="c1">// prints &quot;c&quot;</span>

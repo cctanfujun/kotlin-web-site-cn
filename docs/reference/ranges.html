@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1116,78 +1117,7 @@ For example, <code>IntRange</code> implements <code>ClosedRange&lt;Int&gt;</code
 
 <p>The <code>last</code> element of the progression is calculated to find maximum value not greater than the <code>end</code> value for positive <code>increment</code> or minimum value not less than the <code>end</code> value for negative <code>increment</code> such that <code>(last - first) % increment == 0</code>.</p>
 
-<blockquote>
-  <p><del>###常见的接口定义</del></p>
-
-  <p>有两种基本接口:<code>Range</code>和<code>Progression</code>。</p>
-
-  <p><code>Range</code> 接口定义了一个范围或一个数学意义上的区间。
-它有两个端点,<code>start</code> 和<code>end</code>,并且<code>contains()</code>函数检查是否包含一个给定的数字范围
-(也可以作为<em class="keyword">in</em> /<em class="keyword">!in</em>操作符)。
-“开始”和“结束”是包含在范围内。如果<code>start</code>= =<code>end</code>,范围包含一个确定的元素。
-如果 <code>start</code> &gt; <code>end</code>,范围是空的.</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="n">interface</span> <span class="n">Range</span><span class="p">&lt;</span><span class="n">T</span> <span class="p">:</span> <span class="n">Comparable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;</span> <span class="p">{</span>
-  <span class="k">val</span> <span class="py">start</span><span class="p">:</span> <span class="n">T</span>
-  <span class="k">val</span> <span class="py">end</span><span class="p">:</span> <span class="n">T</span>
-  <span class="k">fun</span> <span class="nf">contains</span><span class="p">(</span><span class="n">element</span><span class="p">:</span> <span class="n">T</span><span class="p">):</span> <span class="n">Boolean</span>
-<span class="p">}</span></code></pre>
-
-  <p><code>Progression</code>定义了一种等差算法。
-它有 <code>start</code>(进程中的第一个元素), <code>end</code>(被包含的最后一个元素)
-和<code>increment</code> (每个进程元素和以前的区别,非零)。
-但它的主要特征是,可以遍历过程,所以这是<code>Iterable</code>的子类。
-<code>end</code>最后一个元素不是必须的，如 <code>start &lt; end &amp;&amp; increment &lt; 0</code> or <code>start &gt; end &amp;&amp; increment &gt; 0</code>.</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="n">interface</span> <span class="n">Progression</span><span class="p">&lt;</span><span class="n">N</span> <span class="p">:</span> <span class="n">Number</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">Iterable</span><span class="p">&lt;</span><span class="n">N</span><span class="p">&gt;</span> <span class="p">{</span>
-  <span class="k">val</span> <span class="py">start</span><span class="p">:</span> <span class="n">N</span>
-  <span class="k">val</span> <span class="py">end</span><span class="p">:</span> <span class="n">N</span>
-  <span class="k">val</span> <span class="py">increment</span><span class="p">:</span> <span class="n">Number</span> <span class="c1">// not N, because for Char we&#39;ll want it to be negative sometimes</span>
-  <span class="c1">// fun iterator(): Iterator&lt;N&gt; is defined in Iterable interface</span>
-<span class="p">}</span></code></pre>
-
-  <p>迭代’Progression’相当于一个索引<em>for</em> {:.Java关键字}循环:</p>
-
-  <pre><code class="code-block _highlighted lang_java"><span class="c1">// if increment &gt; 0</span>
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">increment</span><span class="o">)</span> <span class="o">{</span>
-  <span class="c1">// ...</span>
-<span class="o">}</span>
-
-<span class="c1">// if increment &lt; 0</span>
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="n">increment</span><span class="o">)</span> <span class="o">{</span>
-  <span class="c1">// ...</span>
-<span class="o">}</span></code></pre>
-
-  <h3 id="section-2">类的实现<a href="#section-2" class="anchor"></a></h3>
-
-  <p>为了避免不必要的重复,让我们只考虑一个数字类型,<code>Int</code>。
-对于其他类型的数量实现是一样的。
-注意,可以使用这些类的构造函数创建实例,
-而更方便使用的<code>rangeTo()</code>(这个名字,或作为<code>..</code>操作符), <code>downTo()</code>, <code>reversed()</code>和<code>step()</code>等实用的函数,以后介绍。</p>
-
-  <p><code>IntProgression</code> 类很简单快捷:</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">IntProgression</span><span class="p">(</span><span class="k">override</span> <span class="k">val</span> <span class="py">start</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="k">override</span> <span class="k">val</span> <span class="py">end</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="k">override</span> <span class="k">val</span> <span class="py">increment</span><span class="p">:</span> <span class="n">Int</span><span class="p">):</span> <span class="n">Progression</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">{</span>
-  <span class="k">override</span> <span class="k">fun</span> <span class="nf">iterator</span><span class="p">():</span> <span class="n">Iterator</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">IntProgressionIteratorImpl</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">increment</span><span class="p">)</span> <span class="c1">// implementation of iterator is obvious</span>
-<span class="p">}</span></code></pre>
-
-  <p><code>IntRange</code> IntRange是有点复杂:它的实现类是 <code>Progression&lt;Int&gt;</code>和<code>Range&lt;Int&gt;</code>,因为它是自然的遍历的(默认增量值为1整数和浮点类型):</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">IntRange</span><span class="p">(</span><span class="k">override</span> <span class="k">val</span> <span class="py">start</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="k">override</span> <span class="k">val</span> <span class="py">end</span><span class="p">:</span> <span class="n">Int</span><span class="p">):</span> <span class="n">Range</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;,</span> <span class="n">Progression</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">{</span>
-  <span class="k">override</span> <span class="k">val</span> <span class="py">increment</span><span class="p">:</span> <span class="n">Int</span>
-    <span class="k">get</span><span class="p">()</span> <span class="p">=</span> <span class="m">1</span>
-  <span class="k">override</span> <span class="k">fun</span> <span class="nf">contains</span><span class="p">(</span><span class="n">element</span><span class="p">:</span> <span class="n">Int</span><span class="p">):</span> <span class="n">Boolean</span> <span class="p">=</span> <span class="n">start</span> <span class="p">&lt;=</span> <span class="n">element</span> <span class="p">&amp;&amp;</span> <span class="n">element</span> <span class="p">&lt;=</span> <span class="n">end</span>
-  <span class="k">override</span> <span class="k">fun</span> <span class="nf">iterator</span><span class="p">():</span> <span class="n">Iterator</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">IntProgressionIteratorImpl</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">increment</span><span class="p">)</span>
-<span class="p">}</span></code></pre>
-
-  <p><code>ComparableRange</code> 也很简单(请记住,比较转换是<code>compareTo()</code>):</p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">ComparableRange</span><span class="p">&lt;</span><span class="n">T</span> <span class="p">:</span> <span class="n">Comparable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;&gt;(</span><span class="k">override</span> <span class="k">val</span> <span class="py">start</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="k">override</span> <span class="k">val</span> <span class="py">end</span><span class="p">:</span> <span class="n">T</span><span class="p">):</span> <span class="n">Range</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
-  <span class="k">override</span> <span class="k">fun</span> <span class="nf">contains</span><span class="p">(</span><span class="n">element</span><span class="p">:</span> <span class="n">T</span><span class="p">):</span> <span class="n">Boolean</span> <span class="p">=</span> <span class="n">start</span> <span class="p">&lt;=</span> <span class="n">element</span> <span class="p">&amp;&amp;</span> <span class="n">element</span> <span class="p">&lt;=</span> <span class="n">end</span>
-<span class="p">}</span></code></pre>
-
-  <h2 id="section-3">一些实用函数<a href="#section-3" class="anchor"></a></h2>
-</blockquote>
+<h2 id="section-2">一些实用函数<a href="#section-2" class="anchor"></a></h2>
 
 <h3 id="rangeto"><code>rangeTo()</code><a href="#rangeto" class="anchor"></a></h3>
 

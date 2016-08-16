@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1097,11 +1098,15 @@
   <span class="k">abstract</span> <span class="k">fun</span> <span class="nf">signal</span><span class="p">():</span> <span class="n">ProtocolState</span>
 <span class="p">}</span></code></pre>
 
-<p>注意如果枚举类定义了任何成员，你需要像JAVA一样把枚举实例的定义和成员定义用分号分开。</p>
+<p>with their corresponding methods, as well as overriding base methods. Note that if the enum class defines any
+members, you need to separate the enum constant definitions from the member definitions with a semicolon, just like
+in Java.</p>
 
-<h2 id="section-3">枚举实例的用法<a href="#section-3" class="anchor"></a></h2>
+<h2 id="working-with-enum-constants">Working with Enum Constants<a href="#working-with-enum-constants" class="anchor"></a></h2>
 
-<p>像JAVA一样，枚举类在Kotlin中有合成方法。它允许列举枚举实例并且通过名称返回枚举实例。下面是应用实例 (假设枚举实例名称是<code>EnumClass</code>):</p>
+<p>Just like in Java, enum classes in Kotlin have synthetic methods allowing to list
+the defined enum constants and to get an enum constant by its name. The signatures
+of these methods are as follows (assuming the name of the enum class is <code>EnumClass</code>):</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">EnumClass</span><span class="p">.</span><span class="n">valueOf</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">String</span><span class="p">):</span> <span class="n">EnumClass</span>
 <span class="n">EnumClass</span><span class="p">.</span><span class="n">values</span><span class="p">():</span> <span class="n">Array</span><span class="p">&lt;</span><span class="n">EnumClass</span><span class="p">&gt;</span></code></pre>

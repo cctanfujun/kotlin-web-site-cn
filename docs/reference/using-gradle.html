@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -826,7 +827,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1063,15 +1064,9 @@
 
         <h1 id="gradle">使用 Gradle<a href="#gradle" class="anchor"></a></h1>
 
-<table>
-  <tbody>
-    <tr>
-      <td>In order to build Kotlin with Gradle you should <a href="#plugin-and-versions">set up the <em>kotlin-gradle</em> plugin</a>, <a href="#targeting-the-jvm">apply it</a> to your project and <a href="#configuring-dependencies">add <em>kotlin-stdlib</em> dependencies</a>. Those actions may also be performed automatically in IntelliJ IDEA by invoking the Tools</td>
-      <td>Kotlin</td>
-      <td>Configure Kotlin in Project action.</td>
-    </tr>
-  </tbody>
-</table>
+<p>In order to build Kotlin with Gradle you should <a href="#plugin-and-versions">set up the <em>kotlin-gradle</em> plugin</a>, <a href="#targeting-the-jvm">apply it</a> to your project and <a href="#configuring-dependencies">add <em>kotlin-stdlib</em> dependencies</a>. Those actions may also be performed automatically in IntelliJ IDEA by invoking the Tools | Kotlin | Configure Kotlin in Project action.</p>
+
+<p>You can also enable <a href="#incremental-compilation">incremental compilation</a> to make your builds faster.</p>
 
 <h2 id="section">插件和版本<a href="#section" class="anchor"></a></h2>
 
@@ -1101,6 +1096,21 @@
 </tr>
 </thead>
 <tbody>
+
+<tr>
+  <td>1.0.3</td>
+  <td>1.0.3</td>
+</tr>
+
+<tr>
+  <td>1.0.2 hotfix update</td>
+  <td>1.0.2-1</td>
+</tr>
+
+<tr>
+  <td>1.0.2</td>
+  <td>1.0.2</td>
+</tr>
 
 <tr>
   <td>1.0.1 hotfix update 2</td>
@@ -1294,7 +1304,7 @@
   <span class="o">}</span>
 <span class="o">}</span></code></pre>
 
-<p>上述属性可以使kotlin目录在Android Studio中作为源码根目录存在, 所以当项目模型加载到IDE可以被正确识别.</p>
+<p>上述属性可以使kotlin目录在Android Studio中作为源码根目录存在, 所以当项目模型加载到IDE可以被正确识别. Alternatively, you can put Kotlin classes in the Java source directory, typically located in <code>src/main/java</code>.</p>
 
 <h2 id="section-1">配置依赖<a href="#section-1" class="anchor"></a></h2>
 
@@ -1323,7 +1333,51 @@
 <p>If your project uses Kotlin reflection or testing facilities, you need to add the corresponding dependencies as well:</p>
 
 <pre><code class="code-block _highlighted lang_groovy"><span class="n">compile</span> <span class="s2">&quot;org.jetbrains.kotlin:kotlin-reflect:$kotlin_version&quot;</span>
-<span class="n">testCompile</span> <span class="s2">&quot;org.jetbrains.kotlin:kotlin-test:$kotlin_version&quot;</span></code></pre>
+<span class="n">testCompile</span> <span class="s2">&quot;org.jetbrains.kotlin:kotlin-test:$kotlin_version&quot;</span>
+<span class="n">testCompile</span> <span class="s2">&quot;org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version&quot;</span></code></pre>
+
+<h2 id="annotation-processing">Annotation processing<a href="#annotation-processing" class="anchor"></a></h2>
+
+<p>The Kotlin plugin supports annotation processors like <em>Dagger</em> or <em>DBFlow</em>. In order for them to work with Kotlin classes, add the respective dependencies using the <code>kapt</code> configuration in your <code>dependencies</code> block:</p>
+
+<pre><code class="code-block _highlighted lang_groovy"><span class="n">dependencies</span> <span class="o">{</span>
+  <span class="n">kapt</span> <span class="s1">&#39;groupId:artifactId:version&#39;</span>
+<span class="o">}</span></code></pre>
+
+<p>If you previously used the <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> plugin, remove it from your <code>build.gradle</code> file and replace usages of the <code>apt</code> configuration with <code>kapt</code>. If your project contains Java classes, <code>kapt</code> will also take care of them. If you use annotation processors for your <code>androidTest</code> or <code>test</code> sources, the respective <code>kapt</code> configurations are named <code>kaptAndroidTest</code> and <code>kaptTest</code>.</p>
+
+<p>Some annotation processing libraries require you to reference generated classes from within your code. For this to work, you’ll need to add an additional flag to enable the <em>generation of stubs</em> to your build file:</p>
+
+<pre><code class="code-block _highlighted lang_groovy"><span class="n">kapt</span> <span class="o">{</span>
+    <span class="n">generateStubs</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="o">}</span></code></pre>
+
+<p>Note, that generation of stubs slows down your build somewhat, which is why it’s disabled by default. If generated classes are referenced only in a few places in your code, you can alternatively revert to using a helper class written in Java which can be <a href="java-interop.html">seamlessly called</a> from your Kotlin code.</p>
+
+<p>For more information on <code>kapt</code> refer to the <a href="http://blog.jetbrains.com/kotlin/2015/06/better-annotation-processing-supporting-stubs-in-kapt/">official blogpost</a>.</p>
+
+<h2 id="incremental-compilation">Incremental compilation<a href="#incremental-compilation" class="anchor"></a></h2>
+
+<p>Kotlin 1.0.2 introduced new experimental incremental compilation mode in Gradle. 
+Incremental compilation tracks changes of source files between builds so only files affected by these changes would be compiled.</p>
+
+<p>There are several ways to enable it:</p>
+
+<ol>
+  <li>
+    <p>add <code>kotlin.incremental=true</code> line either to a <code>gradle.properties</code> or a <code>local.properties</code> file;</p>
+  </li>
+  <li>
+    <p>add <code>-Pkotlin.incremental=true</code> to gradle command line parameters. Note that in this case the parameter should be added to each subsequent build (any build without this parameter invalidates incremental caches).</p>
+  </li>
+</ol>
+
+<p>After incremental compilation is enabled, you should see the following warning message in your build log:
+<code>
+Using experimental kotlin incremental compilation
+</code></p>
+
+<p>Note, that the first build won’t be incremental.</p>
 
 <h2 id="osgi">OSGi<a href="#osgi" class="anchor"></a></h2>
 

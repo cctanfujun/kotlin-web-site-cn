@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -826,7 +827,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1079,21 +1080,25 @@
 但我们相信社区会从这个新的静态类型 JVM 平台语言中受益，它没有
 遗留问题而有开发人员迫切想要特性。</p>
 
-<p>这个项目背后的主要设计目标是：</p>
+<p>The core values behind the design of Kotlin make it</p>
 
 <ul>
-  <li>创建一个兼容 Java 的语言，</li>
-  <li>它的编译速度至少和 Java 一样快，</li>
-  <li>使它比 Java 更安全，即静态检测空指针解引用等常见陷阱，</li>
-  <li>通过支持变量类型推断、高阶函数（闭包）、扩展函数、mixin 以及一等公民的委托等等使它比 Java 更简洁；</li>
-  <li>并且，在保持有用级表现力（见上文）的前提下，使它比最成熟的竞品——Scala 更简单。</li>
+  <li>Interoperable: Kotlin can be freely mixed with Java,</li>
+  <li>Safe: statically check for common pitfalls (e.g., null pointer dereference) to catch errors at compile time,</li>
+  <li>Toolable: enable precise and performant tools such as IDEs and build systems,</li>
+  <li>“Democratic”: make all parts of the langauge available to all developers (no policies are needed to restrict the use of some features to library writers or other groups of developers).</li>
 </ul>
 
-<h3 id="section-2">如何授权？<a href="#section-2" class="anchor"></a></h3>
+<h3 id="how-is-it-licensed">How is it licensed?<a href="#how-is-it-licensed" class="anchor"></a></h3>
+<p>### 如何授权？</p>
 
 <p>Kotlin 是一种开源语言并在 Apache 2 开源软件许可下授权。它的 IntelliJ 插件也是开源软件。</p>
 
 <p>它托管在 Github 上并且我们很乐意接受贡献者。</p>
+
+<h3 id="where-can-i-get-an-hd-kotlin-logo">Where can I get an HD Kotlin logo?<a href="#where-can-i-get-an-hd-kotlin-logo" class="anchor"></a></h3>
+
+<p>Logos can be downloaded <a href="https://resources.jetbrains.com/assets/products/kotlin/kotlin_logos.zip">here</a>. Please follow simple rules in the <code>readme.txt</code> inside the archive.</p>
 
 <h3 id="java">它兼容Java？<a href="#java" class="anchor"></a></h3>
 
@@ -1103,7 +1108,7 @@
 
 <p>Kotlin 生成的字节码兼容 Java 6 以及更新版本。这确保 Kotlin 可以在像 Android 这样上一个所支持版本是 Java 6 的环境中使用。</p>
 
-<h3 id="section-3">有没有工具支持？<a href="#section-3" class="anchor"></a></h3>
+<h3 id="section-2">有没有工具支持？<a href="#section-2" class="anchor"></a></h3>
 
 <p>有。有一个作为 Apache 2 许可下开源项目的 IntelliJ IDEA 插件可用。 在
 <a href="http://www.jetbrains.com/idea/features/editions_comparison_matrix.html">自由开源社区版和旗舰版</a>的 IntelliJ IDEA 中都可以使用 Kotlin。</p>
@@ -1112,9 +1117,9 @@
 
 <p>有。安装说明请参阅这个<a href="/docs/tutorials/getting-started-eclipse.html">教程</a>。</p>
 
-<h3 id="section-4">有独立的编译器吗？<a href="#section-4" class="anchor"></a></h3>
+<h3 id="section-3">有独立的编译器吗？<a href="#section-3" class="anchor"></a></h3>
 
-<p>有。你可以从 <a href="https://github.com/JetBrains/kotlin/releases/tag/1.0.1-2">Github 上的发布页</a>下载独立的编译器和其他构建工具。</p>
+<p>有。你可以从 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.0.3">Github 上的发布页</a>下载独立的编译器和其他构建工具。</p>
 
 <h3 id="kotlin-1">Kotlin是函数式语言吗？<a href="#kotlin-1" class="anchor"></a></h3>
 
@@ -1123,22 +1128,18 @@ Kotlin 标准库中还有很多一般函数式语言的设计（例如 map、fla
 
 <h3 id="kotlin-2">Kotlin支持泛型吗？<a href="#kotlin-2" class="anchor"></a></h3>
 
-<p>Kotlin 支持泛型。它也支持声明处型变和使用处型变。Kotlin 也没有通配符类型。内联函数支持具体化的类型参数。</p>
+<p>Kotlin 支持泛型。它也支持声明处型变和使用处型变。Kotlin 没有通配符类型。内联函数支持具体化的类型参数。</p>
 
-<h3 id="section-5">分号是必需的吗？<a href="#section-5" class="anchor"></a></h3>
+<h3 id="section-4">分号是必需的吗？<a href="#section-4" class="anchor"></a></h3>
 
 <p>不是。它们是可选的。</p>
 
-<h3 id="section-6">花括号是必需的吗？<a href="#section-6" class="anchor"></a></h3>
-
-<p>是。</p>
-
-<h3 id="section-7">为什么类型声明在右侧？<a href="#section-7" class="anchor"></a></h3>
+<h3 id="section-5">为什么类型声明在右侧？<a href="#section-5" class="anchor"></a></h3>
 
 <p>我们相信这会使代码更易读。此外它启用了一些很好的语法特性，例如，很容易脱离类型注解。Scala 也已
 很好地证明了这没有问题。</p>
 
-<h3 id="section-8">右侧类型声明会影响工具吗？<a href="#section-8" class="anchor"></a></h3>
+<h3 id="section-6">右侧类型声明会影响工具吗？<a href="#section-6" class="anchor"></a></h3>
 
 <p>不会。我们仍然可以实现对变量名的建议等等。</p>
 
@@ -1148,17 +1149,15 @@ Kotlin 标准库中还有很多一般函数式语言的设计（例如 map、fla
 
 <h3 id="dsl">我可以把我的DSL嵌入到语言里吗？<a href="#dsl" class="anchor"></a></h3>
 
-<p>可以。Kotlin 提供了一些有助于此的特性：操作符重载、通过内联函数自定义控制结构、中缀函数调用、扩展函数、注解以及
-语言引文（language quotations）。</p>
+<p>可以。Kotlin 提供了一些有助于此的特性：操作符重载、通过内联函数自定义控制结构、中缀函数调用、扩展函数、注解。</p>
 
-<h3 id="javascriptecmascript">JavaScript支持到ECMAScript的什么水平？<a href="#javascriptecmascript" class="anchor"></a></h3>
+<h3 id="kotlin-for-javascript--ecmascript">Kotlin for JavaScript 支持到 ECMAScript的什么水平？<a href="#kotlin-for-javascript--ecmascript" class="anchor"></a></h3>
 
 <p>目前到 5。</p>
 
 <h3 id="javascript">JavaScript后端支持模块系统吗？<a href="#javascript" class="anchor"></a></h3>
 
-<p>支持。有提供 CommonJS 和 AMD 支持的计划。</p>
-
+<p>支持。至少有提供 CommonJS 和 AMD 支持的计划。</p>
 
     </article>
 </div>

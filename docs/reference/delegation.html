@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1065,41 +1066,23 @@
 
 <h2 id="section-1">委托类<a href="#section-1" class="anchor"></a></h2>
 
-<p><a href="https://en.wikipedia.org/wiki/Delegation_pattern">委托模式</a>是实现继承的一个有效方式.</p>
-
-<p>Kotlin原生支持它。</p>
-
-<p>一个类 <code>Derived</code> 可以从一个接口 <code>Base</code>继承并且委托所有的共有方法为具体对象。</p>
+<p><a href="https://en.wikipedia.org/wiki/Delegation_pattern">委托模式</a>是实现继承的一个有效方式.
+Kotlin原生支持它。
+一个类 <code>Derived</code> 可以从一个接口 <code>Base</code>继承并且委托所有的共有方法为具体对象。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">interface</span> <span class="n">Base</span> <span class="p">{</span>
-
   <span class="k">fun</span> <span class="nf">print</span><span class="p">()</span>
-
 <span class="p">}</span>
-
-
-
 
 <span class="k">class</span> <span class="nc">BaseImpl</span><span class="p">(</span><span class="k">val</span> <span class="py">x</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">:</span> <span class="n">Base</span> <span class="p">{</span>
-
   <span class="k">override</span> <span class="k">fun</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span> <span class="n">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">}</span>
-
 <span class="p">}</span>
-
-
-
 
 <span class="k">class</span> <span class="nc">Derived</span><span class="p">(</span><span class="n">b</span><span class="p">:</span> <span class="n">Base</span><span class="p">)</span> <span class="p">:</span> <span class="n">Base</span> <span class="k">by</span> <span class="n">b</span>
 
-
-
-
-<span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-
+<span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Array</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;)</span> <span class="p">{</span>
   <span class="k">val</span> <span class="py">b</span> <span class="p">=</span> <span class="n">BaseImpl</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
-
   <span class="n">Derived</span><span class="p">(</span><span class="n">b</span><span class="p">).</span><span class="n">print</span><span class="p">()</span> <span class="c1">// prints 10</span>
-
 <span class="p">}</span></code></pre>
 
 <p>在父类<code>Derived</code>中的 <em class="keyword">by</em>-语句表示 <code>b</code> 将会被 储存在 <code>Derived</code> 的内部对象中

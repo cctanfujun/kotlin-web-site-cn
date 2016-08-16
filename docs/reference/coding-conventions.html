@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1101,6 +1102,20 @@
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 省略了 &quot;: Unit&quot;</span>
 
 <span class="p">}</span></code></pre>
+
+<h2 id="functions-vs-properties">Functions vs Properties<a href="#functions-vs-properties" class="anchor"></a></h2>
+
+<p>In some cases functions with no arguments might be interchangeable with read-only properties. 
+Although the semantics are similar, there are some stylistic conventions on when to prefer one to another.</p>
+
+<p>Prefer a property over a function when the underlying algorithm:</p>
+
+<ul>
+  <li>does not throw</li>
+  <li>has a <code>O(1)</code> complexity</li>
+  <li>is cheap to calculate (or caсhed on the first run)</li>
+  <li>returns the same result over invocations</li>
+</ul>
 
     </article>
 </div>

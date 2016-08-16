@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1065,8 +1066,10 @@
 
 <h2 id="section-1">异常类<a href="#section-1" class="anchor"></a></h2>
 
-<p>Kotlin中所有异常类都是<code>Exception</code>类的子累。每一个异常都含有一条信息、栈回溯信息和一个可选选项。
-可以使用 <em class="keyword">throw</em>-expression 来抛出一个异常。</p>
+<p>Kotlin中所有异常类都是 <code>Throwable</code> 的子类。
+每一个异常都含有一条信息、栈回溯信息和一个可选的原因。</p>
+
+<p>可以使用 <em class="keyword">throw</em>-expression 来抛出一个异常。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">throw</span> <span class="n">MyException</span><span class="p">(</span><span class="s">&quot;Hi There!&quot;</span><span class="p">)</span></code></pre>
 
@@ -1082,7 +1085,8 @@
   <span class="c1">// optional finally block</span>
 <span class="p">}</span></code></pre>
 
-<p>可以有零或多个 <em class="keyword">catch</em> 块。<em class="keyword">finally</em> 块可以省略。<em class="keyword">catch</em> 和 <em class="keyword">finally</em> 块应该至少出现一个。</p>
+<p>可以有零或多个 <em class="keyword">catch</em> 块。<em class="keyword">finally</em> 块可以省略。
+<em class="keyword">catch</em> 和 <em class="keyword">finally</em> 块应该至少出现一个。</p>
 
 <h3 id="try">Try是一个表达式<a href="#try" class="anchor"></a></h3>
 
@@ -1090,16 +1094,21 @@
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">a</span><span class="p">:</span> <span class="n">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">try</span> <span class="p">{</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">input</span><span class="p">)</span> <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">NumberFormatException</span><span class="p">)</span> <span class="p">{</span> <span class="k">null</span> <span class="p">}</span></code></pre>
 
-<p><em class="keyword">try</em>-expression 的返回值是 <em class="keyword">try</em> 中最后一个表达式或者是 <em class="keyword">catch</em> 块中最后一个表达式。<em class="keyword">finally</em> 块中的内容不会影响到表达式的结果。</p>
+<p><em class="keyword">try</em>-expression 的返回值是 <em class="keyword">try</em> 中
+最后一个表达式或者是 <em class="keyword">catch</em> 块中最后一个表达式。
+<em class="keyword">finally</em> 块中的内容不会影响到表达式的结果。</p>
 
-<h2 id="section-2">可检查异常<a href="#section-2" class="anchor"></a></h2>
+<h2 id="section-2">受检的异常<a href="#section-2" class="anchor"></a></h2>
 
-<p>Kotlin中没有可检查异常。这是有很多原因的，但是我们会提供一个简单的示例。
-以下示例是JDK中<code>StringBuilder</code>类实现中的</p>
+<p>Kotlin中没有受检的异常。这是有很多原因的，但是我们会提供一个简单的示例。</p>
+
+<p>以下示例是JDK中<code>StringBuilder</code>类实现中的</p>
 
 <pre><code class="code-block _highlighted lang_java"><span class="n">Appendable</span> <span class="nf">append</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">csq</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">;</span></code></pre>
 
-<p>这一行代码告诉我们，每次当我们调用append向<code>StringBuilder</code>追加字符串时，都需要捕获<code>IOExceptions</code>异常。因为它可能会操作IO(<code>Writer</code> 也实现了 <code>Appendable</code> 接口)…</p>
+<p>What does this signature say? It says that every time I append a string to something (a <code>StringBuilder</code>, some kind of a log, a console, etc.)
+I have to catch those <code>IOExceptions</code>. Why? Because it might be performing IO (<code>Writer</code> also implements <code>Appendable</code>)…
+So it results into this kind of code all over the place:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">try</span> <span class="p">{</span>
   <span class="n">log</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
@@ -1123,7 +1132,7 @@
   <li><a href="http://www.artima.com/intv/handcuffs.html">The Trouble with Checked Exceptions</a> (Anders Hejlsberg)</li>
 </ul>
 
-<h2 id="java">Java交互<a href="#java" class="anchor"></a></h2>
+<h2 id="java-">Java 互操作性<a href="#java-" class="anchor"></a></h2>
 
 <p>请在 <a href="java-interop.html">Java Interoperability section</a> 异常章节中参阅Java交互相关信息。</p>
 

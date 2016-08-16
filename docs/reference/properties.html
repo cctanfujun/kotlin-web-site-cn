@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1101,14 +1102,7 @@
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">var</span> <span class="py">allByDefault</span><span class="p">:</span> <span class="n">Int</span><span class="p">?</span> <span class="c1">// error: explicit initializer required, default getter and setter implied</span>
 <span class="k">var</span> <span class="py">initialized</span> <span class="p">=</span> <span class="m">1</span> <span class="c1">// has type Int, default getter and setter</span></code></pre>
 
-<blockquote>
-  <p><del>注意公有的API(即<strong>public</strong>和<strong>protected</strong>)的属性，类型是不做推导的。</del>
-<del>这么设计是为了防止改变初始化器时不小心改变了公有API。比如：</del></p>
-
-  <pre><code class="code-block _highlighted lang_kotlin"><span class="k">public</span> <span class="k">val</span> <span class="py">example</span> <span class="p">=</span> <span class="m">1</span> <span class="c1">// error: a public property must have a type specified explicitly</span></code></pre>
-
-  <p>一个只读属性的语法和一个可变的语法有两方面的不同：1、只读属性的用<code>val</code>开始代替<code>var</code> 2、只读属性不许setter</p>
-</blockquote>
+<p>一个只读属性的语法和一个可变的语法有两方面的不同：1、只读属性的用<code>val</code>开始代替<code>var</code> 2、只读属性不许setter</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">simple</span><span class="p">:</span> <span class="n">Int</span><span class="p">?</span> <span class="c1">// has type Int, default getter, must be initialized in constructor</span>
 <span class="k">val</span> <span class="py">inferredType</span> <span class="p">=</span> <span class="m">1</span> <span class="c1">// has type Int and a default getter</span></code></pre>
@@ -1150,7 +1144,7 @@
 
 <p><code>field</code>标识符只能用在属性的访问器内。</p>
 
-<p>编译器会查看访问器的内部， 如果他们使用了实际字段（或者访问器使用默认实现），那么将会生成一个实际字段，否则不会生成。</p>
+<p>A backing field will be generated for a property if it uses the default implementation of at least one of the accessors, or if a custom accessor references it through the <code>field</code> identifier.</p>
 
 <p>例如，下面的情况下， 就没有实际字段：</p>
 

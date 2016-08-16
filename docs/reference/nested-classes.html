@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1076,8 +1077,7 @@
 
 <h2 id="section-1">内部类<a href="#section-1" class="anchor"></a></h2>
 
-<p>为了能被外部类访问一个类可以被标记为内部类（“inner” 关键词）。
-内部类会带有一个来自外部类的对象的引用：</p>
+<p>为了能被外部类访问一个类可以被标记为内部类（“inner” 关键词）。内部类会带有一个来自外部类的对象的引用：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">Outer</span> <span class="p">{</span>
   <span class="k">private</span> <span class="k">val</span> <span class="py">bar</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">1</span>
@@ -1090,6 +1090,24 @@
 
 <p>参阅<a href="this-expressions.html">this-expressions.html</a>中“this”关键词用法来学习在内部类中如何消除“this”关键词的歧义。</p>
 
+<h2 id="anonymous-inner-classes">Anonymous inner classes<a href="#anonymous-inner-classes" class="anchor"></a></h2>
+
+<p>Anonymous inner class instances are created using an <a href="object-declarations.html#object-expressions">object expression</a>:</p>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="n">window</span><span class="p">.</span><span class="n">addMouseListener</span><span class="p">(</span><span class="k">object</span><span class="p">:</span> <span class="n">MouseAdapter</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">mouseClicked</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">MouseEvent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">}</span>
+                                                      
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">mouseEntered</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">MouseEvent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">}</span>
+<span class="p">})</span></code></pre>
+
+<p>If the object is an instance of a functional Java interface (i.e. a Java interface with a single abstract method),
+you can create it using a lambda expression prefixed with the type of the interface:</p>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">listener</span> <span class="p">=</span> <span class="n">ActionListener</span> <span class="p">{</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;clicked&quot;</span><span class="p">)</span> <span class="p">}</span></code></pre>
 
     </article>
 </div>

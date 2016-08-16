@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -826,7 +827,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1108,7 +1109,7 @@
 
 <h4 id="param-name"><code>@param &lt;name&gt;</code></h4>
 
-<p>代表一个函数的参数值或者一个类的参数。
+<p>代表一个函数的参数值或者一个类、属性或者函数的类型参数。
 为了更好的区分描述中的参数值，如果你喜欢，你可以在参数名
 括在方括号中，下面是两个符合条件的句法：</p>
 
@@ -1123,6 +1124,10 @@
 <h4 id="constructor"><code>@constructor</code></h4>
 
 <p>类构造函数</p>
+
+<h4 id="receiver"><code>@receiver</code></h4>
+
+<p>Documents the receiver of an extension function.</p>
 
 <h4 id="property-name"><code>@property &lt;name&gt;</code></h4>
 
@@ -1191,6 +1196,35 @@ awkward.</p>
 <p>注意KDoc在链接中没有解决重载成员的任何语法。自从Kotlin文档生成
 工具把上所有的重载函数放在同一个页面之后，标识一个特定的重载函数
 不需要链接的方式。</p>
+
+<h2 id="module-and-package-documentation">Module and Package Documentation<a href="#module-and-package-documentation" class="anchor"></a></h2>
+
+<p>Documentation for a module as a whole, as well as packages in that module, is provided as a separate Markdown file,
+and the paths to that file is passed to Dokka using the <code>-include</code> command line parameter or the corresponding parameters
+in Ant, Maven and Gradle plugins.</p>
+
+<p>Inside the file, the documentation for the module as a whole and for individual packages is introduced by the corresponding first-level
+headings. The text of the heading must be “Module <code>&lt;module name&gt;</code>” for the module, and “Package <code>&lt;package qualified name&gt;</code>” for a package.</p>
+
+<p>Here’s an example content of the file:</p>
+
+<pre># Module kotlin-demo
+
+The module shows the Dokka syntax usage.
+
+# Package org.jetbrains.kotlin.demo
+
+Contains assorted useful stuff.
+
+## Level 2 heading
+
+Text after this heading is also part of documentation for `org.jetbrains.kotlin.demo`
+
+# Package org.jetbrains.kotlin.demo2
+
+Useful stuff in another package.
+</pre>
+
 
     </article>
 </div>
