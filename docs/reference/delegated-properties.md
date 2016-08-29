@@ -160,7 +160,7 @@ class User(val map: Map<String, Any?>) {
 }
 ```
 
-在这个例子中，构造函数会接收一个map参数：
+在这个例子中，构造函数会接受一个map参数：
 
 ``` kotlin
 val user = User(mapOf(

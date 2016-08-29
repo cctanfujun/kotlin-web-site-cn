@@ -213,7 +213,7 @@ Java平台上，原生数据类型的数组被用来避免封箱/开箱的操作
 每个原生类型的数组都有一个特有类(specialized class)来处理这种问题(`IntArray`, `DoubleArray`, `CharArray` ...)。
 它们不是`Array`类，而是被编译成java的原生数组，来获得最好的性能。
 
-假设有一个Java方法，它接收一个表示索引的int数组作参数
+假设有一个Java方法，它接受一个表示索引的int数组作参数
 
 ``` java
 public class JavaArrayExample {
