@@ -166,7 +166,7 @@ package foo.bar
 fun Baz.goo() { ... }
 ```
 
-使用一个定义的包之外的扩展，我们需要导入他的头文件：
+使用一个定义的包之外的扩展，我们需要import它的package：
 
 ``` kotlin
 package com.example.usage
