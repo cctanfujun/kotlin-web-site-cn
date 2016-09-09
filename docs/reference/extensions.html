@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1131,6 +1132,16 @@ For example:</p>
 <span class="k">fun</span> <span class="nf">C</span><span class="p">.</span><span class="n">foo</span><span class="p">()</span> <span class="p">{</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;extension&quot;</span><span class="p">)</span> <span class="p">}</span></code></pre>
 
 <p>如果我们调用<code>C</code>类型的<code>c</code>的<code>c.foo()</code>，它将打印”member”，而不是”extension”.</p>
+
+<p>However, it’s perfectly OK for extension functions to overload member functions which have the same name but a different signature:</p>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">C</span> <span class="p">{</span>
+    <span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;member&quot;</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">fun</span> <span class="nf">C</span><span class="p">.</span><span class="n">foo</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;extension&quot;</span><span class="p">)</span> <span class="p">}</span></code></pre>
+
+<p>The call to <code>C().foo(1)</code> will print “extension”.</p>
 
 <h2 id="nullable">Nullable接收者<a href="#nullable" class="anchor"></a></h2>
 

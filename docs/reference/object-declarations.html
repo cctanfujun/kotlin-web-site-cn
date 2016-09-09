@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1090,7 +1091,7 @@ Java把这种情况处理为<em>匿名内部类</em>。
 
 <span class="n">interface</span> <span class="n">B</span> <span class="p">{...}</span>
 
-<span class="k">val</span> <span class="py">ab</span> <span class="p">=</span> <span class="k">object</span> <span class="err">: </span><span class="nc">A</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">B</span> <span class="p">{</span>
+<span class="k">val</span> <span class="py">ab</span><span class="p">:</span> <span class="n">A</span> <span class="p">=</span> <span class="k">object</span> <span class="err">: </span><span class="nc">A</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="n">B</span> <span class="p">{</span>
   <span class="k">override</span> <span class="k">val</span> <span class="py">y</span> <span class="p">=</span> <span class="m">15</span>
 <span class="p">}</span></code></pre>
 
@@ -1195,8 +1196,9 @@ Java把这种情况处理为<em>匿名内部类</em>。
 <p>这是一个在对象表达式与对象声明上重要的不同之处：</p>
 
 <ul>
-  <li>当对象声明被第一次访问的时候,它会被<strong>延迟（lazily）</strong>初始化</li>
   <li>当对象表达式被用到的时候，它会被<strong>立即</strong>执行（并且初始化）</li>
+  <li>当对象声明被第一次访问的时候,它会被<strong>延迟（lazily）</strong>初始化</li>
+  <li>a companion object is initialized when the corresponding class is loaded (resolved), matching the semantics of a Java static initializer</li>
 </ul>
 
 

@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1065,7 +1066,7 @@
 
 <p>一些在 Kotlin 中广泛使用的语法习惯，如果你有更喜欢的语法习惯或者风格，建一个 pull request 贡献给我们吧！</p>
 
-<h3 id="dtos-pojospocos">创建方便任务间传递的数据 DTO’s (POJO’s/POCO’s)<a href="#dtos-pojospocos" class="anchor"></a></h3>
+<h3 id="dtospojospocos">创建 DTOs（POJOs/POCOs）<a href="#dtospojospocos" class="anchor"></a></h3>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">data</span> <span class="k">class</span> <span class="nc">Customer</span><span class="p">(</span><span class="k">val</span> <span class="py">name</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span> <span class="k">val</span> <span class="py">email</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span></code></pre>
 
@@ -1114,8 +1115,11 @@
 
 <h3 id="range">使用区间（range）<a href="#range" class="anchor"></a></h3>
 
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1.</span><span class="p">.</span><span class="m">100</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="k">in</span> <span class="m">2.</span><span class="p">.</span><span class="m">10</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span></code></pre>
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1.</span><span class="p">.</span><span class="m">100</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>  <span class="c1">// closed range: includes 100</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="m">1</span> <span class="n">until</span> <span class="m">100</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> <span class="c1">// half-open range: does not include 100</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="k">in</span> <span class="m">2.</span><span class="p">.</span><span class="m">10</span> <span class="n">step</span> <span class="m">2</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">x</span> <span class="k">in</span> <span class="m">10</span> <span class="n">downTo</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="k">in</span> <span class="m">1.</span><span class="p">.</span><span class="m">10</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span></code></pre>
 
 <h3 id="list-1">只读 list<a href="#list-1" class="anchor"></a></h3>
 
@@ -1257,6 +1261,24 @@
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">stream</span> <span class="p">=</span> <span class="n">Files</span><span class="p">.</span><span class="n">newInputStream</span><span class="p">(</span><span class="n">Paths</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="s">&quot;/some/file.txt&quot;</span><span class="p">))</span>
 <span class="n">stream</span><span class="p">.</span><span class="n">buffered</span><span class="p">().</span><span class="n">reader</span><span class="p">().</span><span class="n">use</span> <span class="p">{</span> <span class="n">reader</span> <span class="p">-&gt;</span>
     <span class="n">println</span><span class="p">(</span><span class="n">reader</span><span class="p">.</span><span class="n">readText</span><span class="p">())</span>
+<span class="p">}</span></code></pre>
+
+<h3 id="convenient-form-for-a-generic-function-that-requires-the-generic-type-information">Convenient form for a generic function that requires the generic type information<a href="#convenient-form-for-a-generic-function-that-requires-the-generic-type-information" class="anchor"></a></h3>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="c1">//  public final class Gson {</span>
+<span class="c1">//     ...</span>
+<span class="c1">//     public &lt;T&gt; T fromJson(JsonElement json, Class&lt;T&gt; classOfT) throws JsonSyntaxException {</span>
+<span class="c1">//     ...</span>
+
+<span class="n">inline</span> <span class="k">fun</span> <span class="err">&lt;</span><span class="nf">reified</span> <span class="n">T</span><span class="p">:</span> <span class="n">Any</span><span class="p">&gt;</span> <span class="n">Gson</span><span class="p">.</span><span class="n">fromJson</span><span class="p">(</span><span class="n">json</span><span class="p">):</span> <span class="n">T</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="n">fromJson</span><span class="p">(</span><span class="n">json</span><span class="p">,</span> <span class="n">T</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span></code></pre>
+
+<h3 id="consuming-a-nullable-boolean">Consuming a nullable Boolean<a href="#consuming-a-nullable-boolean" class="anchor"></a></h3>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">b</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">?</span> <span class="p">=</span> <span class="p">...</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="p">==</span> <span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// `b` is false or null</span>
 <span class="p">}</span></code></pre>
 
     </article>

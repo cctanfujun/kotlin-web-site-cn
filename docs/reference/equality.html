@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-    <title>枚举类 - Kotlin Programming Language</title>
+    <title>相等性 - Kotlin Programming Language</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/kotlin-web-site-cn/assets/images/favicon.ico" type="image/x-icon"/>
@@ -21,7 +21,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="枚举类" />
+<meta property="og:title" content="相等性" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/equality.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
@@ -33,7 +33,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="枚举类">
+<meta name="twitter:title" content="相等性">
 
 <meta name="twitter:description" content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 
@@ -143,6 +143,7 @@
         
     </div>
 </header>
+
 
     <div class="g-layout global-content">
         <div class="g-grid">
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1061,9 +1062,9 @@
         <span class="text">Edit Page</span>
 </a>
 
-        <h1 id="section">等式<a href="#section" class="anchor"></a></h1>
+        <h1 id="section">相等性<a href="#section" class="anchor"></a></h1>
 
-<p>Kotlin中有两种类型的等于:</p>
+<p>Kotlin中有两种类型的相等性:</p>
 
 <ul>
   <li>引用相等(两个引用指向相同的对象)</li>
@@ -1073,15 +1074,7 @@
 <h2 id="section-1">引用相等<a href="#section-1" class="anchor"></a></h2>
 
 <p>引用相等使用<code>===</code>操作符判断(它的否定是<code>!==</code>). <code>a === b</code>
-只有当<code>a</code>和<code>b</code>指向同一个对象才返回true。
-&gt; <del>另外，你可以使用内联函数 identityEquals() 判断引用相等：</del>
-&gt;
-&gt; <code>kotlin
-&gt; a.identityEquals(b)
-&gt; // or
-&gt; a identityEquals b // infix call
-&gt;</code>
-&gt; 当且仅当<code>a</code>和<code>b</code>指向同一个对象返回true。</p>
+只有当<code>a</code>和<code>b</code>指向同一个对象才返回true。</p>
 
 <h2 id="section-2">结构相等<a href="#section-2" class="anchor"></a></h2>
 

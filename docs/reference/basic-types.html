@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1309,6 +1310,17 @@
   <span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="k">in</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span>
     <span class="n">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="s">&quot;&quot;&quot;</span></code></pre>
+
+<p>You can remove leading whitespace with <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/trim-margin.html"><code>trimMargin()</code></a> function:</p>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">text</span> <span class="p">=</span> <span class="s">&quot;&quot;&quot;</span>
+    <span class="p">|</span><span class="n">Tell</span> <span class="n">me</span> <span class="n">and</span> <span class="n">I</span> <span class="n">forget</span><span class="p">.</span> 
+    <span class="p">|</span><span class="n">Teach</span> <span class="n">me</span> <span class="n">and</span> <span class="n">I</span> <span class="n">remember</span><span class="p">.</span> 
+    <span class="p">|</span><span class="n">Involve</span> <span class="n">me</span> <span class="n">and</span> <span class="n">I</span> <span class="n">learn</span><span class="p">.</span>
+    <span class="p">|(</span><span class="n">Benjamin</span> <span class="n">Franklin</span><span class="p">)</span>
+    <span class="s">&quot;&quot;&quot;.trimMargin()</span></code></pre>
+
+<p>By default <code>|</code> is used as margin prefix, but you can choose another character and pass it as a parameter, like <code>trimMargin("&gt;")</code>.</p>
 
 <h3 id="section-11">字符串模板<a href="#section-11" class="anchor"></a></h3>
 

@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -826,7 +827,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1077,6 +1078,21 @@
 </tr>
 </thead>
 <tbody>
+
+<tr>
+  <td>1.0.3</td>
+  <td>1.0.3</td>
+</tr>
+
+<tr>
+  <td>1.0.2 hotfix update</td>
+  <td>1.0.2-1</td>
+</tr>
+
+<tr>
+  <td>1.0.2</td>
+  <td>1.0.2</td>
+</tr>
 
 <tr>
   <td>1.0.1 hotfix update 2</td>
@@ -1222,28 +1238,34 @@
 
 <p>在 &lt;build&gt; 标签中指定所要编译的 Kotlin 源码目录：</p>
 
-<pre><code class="code-block _highlighted lang_xml"><span class="nt">&lt;sourceDirectory&gt;</span>${project.basedir}/src/main/kotlin<span class="nt">&lt;/sourceDirectory&gt;</span>
-<span class="nt">&lt;testSourceDirectory&gt;</span>${project.basedir}/src/test/kotlin<span class="nt">&lt;/testSourceDirectory&gt;</span></code></pre>
+<pre><code class="code-block _highlighted lang_xml"><span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;sourceDirectory&gt;</span>${project.basedir}/src/main/kotlin<span class="nt">&lt;/sourceDirectory&gt;</span>
+    <span class="nt">&lt;testSourceDirectory&gt;</span>${project.basedir}/src/test/kotlin<span class="nt">&lt;/testSourceDirectory&gt;</span>
+<span class="nt">&lt;/build&gt;</span></code></pre>
 
 <p>Maven 中需要引用 Kotlin 插件用于编码源码：</p>
 
-<pre><code class="code-block _highlighted lang_xml"><span class="nt">&lt;plugin&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>kotlin-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.jetbrains.kotlin<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>${kotlin.version}<span class="nt">&lt;/version&gt;</span>
+<pre><code class="code-block _highlighted lang_xml"><span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>kotlin-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.jetbrains.kotlin<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${kotlin.version}<span class="nt">&lt;/version&gt;</span>
 
-    <span class="nt">&lt;executions&gt;</span>
-        <span class="nt">&lt;execution&gt;</span>
-            <span class="nt">&lt;id&gt;</span>compile<span class="nt">&lt;/id&gt;</span>
-            <span class="nt">&lt;goals&gt;</span> <span class="nt">&lt;goal&gt;</span>compile<span class="nt">&lt;/goal&gt;</span> <span class="nt">&lt;/goals&gt;</span>
-        <span class="nt">&lt;/execution&gt;</span>
+            <span class="nt">&lt;executions&gt;</span>
+                <span class="nt">&lt;execution&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>compile<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;goals&gt;</span> <span class="nt">&lt;goal&gt;</span>compile<span class="nt">&lt;/goal&gt;</span> <span class="nt">&lt;/goals&gt;</span>
+                <span class="nt">&lt;/execution&gt;</span>
 
-        <span class="nt">&lt;execution&gt;</span>
-            <span class="nt">&lt;id&gt;</span>test-compile<span class="nt">&lt;/id&gt;</span>
-            <span class="nt">&lt;goals&gt;</span> <span class="nt">&lt;goal&gt;</span>test-compile<span class="nt">&lt;/goal&gt;</span> <span class="nt">&lt;/goals&gt;</span>
-        <span class="nt">&lt;/execution&gt;</span>
-    <span class="nt">&lt;/executions&gt;</span>
-<span class="nt">&lt;/plugin&gt;</span></code></pre>
+                <span class="nt">&lt;execution&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>test-compile<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;goals&gt;</span> <span class="nt">&lt;goal&gt;</span>test-compile<span class="nt">&lt;/goal&gt;</span> <span class="nt">&lt;/goals&gt;</span>
+                <span class="nt">&lt;/execution&gt;</span>
+            <span class="nt">&lt;/executions&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span></code></pre>
 
 <h2 id="kotlin--java-">同时编译 Kotlin 与 Java 源码<a href="#kotlin--java-" class="anchor"></a></h2>
 
@@ -1252,25 +1274,29 @@
 
 <p>It could be done by moving Kotlin compilation to previous phase, process-sources（如果有更好的解决方案欢迎提出）：</p>
 
-<pre><code class="code-block _highlighted lang_xml"><span class="nt">&lt;plugin&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>kotlin-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.jetbrains.kotlin<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>${kotlin.version}<span class="nt">&lt;/version&gt;</span>
+<pre><code class="code-block _highlighted lang_xml"><span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>kotlin-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.jetbrains.kotlin<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${kotlin.version}<span class="nt">&lt;/version&gt;</span>
 
-    <span class="nt">&lt;executions&gt;</span>
-        <span class="nt">&lt;execution&gt;</span>
-            <span class="nt">&lt;id&gt;</span>compile<span class="nt">&lt;/id&gt;</span>
-            <span class="nt">&lt;phase&gt;</span>process-sources<span class="nt">&lt;/phase&gt;</span>
-            <span class="nt">&lt;goals&gt;</span> <span class="nt">&lt;goal&gt;</span>compile<span class="nt">&lt;/goal&gt;</span> <span class="nt">&lt;/goals&gt;</span>
-        <span class="nt">&lt;/execution&gt;</span>
+            <span class="nt">&lt;executions&gt;</span>
+                <span class="nt">&lt;execution&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>compile<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;phase&gt;</span>process-sources<span class="nt">&lt;/phase&gt;</span>
+                    <span class="nt">&lt;goals&gt;</span> <span class="nt">&lt;goal&gt;</span>compile<span class="nt">&lt;/goal&gt;</span> <span class="nt">&lt;/goals&gt;</span>
+                <span class="nt">&lt;/execution&gt;</span>
 
-        <span class="nt">&lt;execution&gt;</span>
-            <span class="nt">&lt;id&gt;</span>test-compile<span class="nt">&lt;/id&gt;</span>
-            <span class="nt">&lt;phase&gt;</span>process-test-sources<span class="nt">&lt;/phase&gt;</span>
-            <span class="nt">&lt;goals&gt;</span> <span class="nt">&lt;goal&gt;</span>test-compile<span class="nt">&lt;/goal&gt;</span> <span class="nt">&lt;/goals&gt;</span>
-        <span class="nt">&lt;/execution&gt;</span>
-    <span class="nt">&lt;/executions&gt;</span>
-<span class="nt">&lt;/plugin&gt;</span></code></pre>
+                <span class="nt">&lt;execution&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>test-compile<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;phase&gt;</span>process-test-sources<span class="nt">&lt;/phase&gt;</span>
+                    <span class="nt">&lt;goals&gt;</span> <span class="nt">&lt;goal&gt;</span>test-compile<span class="nt">&lt;/goal&gt;</span> <span class="nt">&lt;/goals&gt;</span>
+                <span class="nt">&lt;/execution&gt;</span>
+            <span class="nt">&lt;/executions&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span></code></pre>
 
 <h2 id="osgi">OSGi<a href="#osgi" class="anchor"></a></h2>
 

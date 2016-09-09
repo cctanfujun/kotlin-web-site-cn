@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1063,31 +1064,10 @@
 
         <h1 id="section">可见性修饰符<a href="#section" class="anchor"></a></h1>
 
-<p>类，对象，接口，构造方法，和它们的setter方法都可以用_visibility modifiers_来做修饰。(getter一直与属性有着相同的可见性.)</p>
-
-<p>在Kotlin中有以下四个可见性修饰符:</p>
-
-<ul>
-  <li>
-    <p><code>private</code> — 只有在声明的范围及其方法可见(在同一模块);</p>
-  </li>
-  <li>
-    <p><code>protected</code> — (只适用于类/接口成员)和”private”一样,但也在子类可见;</p>
-  </li>
-  <li>
-    <p><code>internal</code> — (在默认情况下使用)在同一个模块中可见(如果声明范围的所有者是可见的);</p>
-  </li>
-  <li>
-    <p><code>public</code> — 随处可见(如果声明范围的所有者是可见的).</p>
-  </li>
-</ul>
-
-<p><strong>注意</strong>: 函数 <em>with expression bodies</em> 所有的属性声明<code>public</code>必须始终显式指定返回类型。
-这是必需的，这样我们就不会随意改变一个类型,仅通过改变实现公共API的一部分。</p>
-
-<pre><code class="code-block _highlighted lang_kotlin"><span class="k">public</span> <span class="k">val</span> <span class="py">foo</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">5</span>    <span class="c1">// explicit return type required</span>
-<span class="k">public</span> <span class="k">fun</span> <span class="nf">bar</span><span class="p">():</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">5</span>  <span class="c1">// explicit return type required</span>
-<span class="k">public</span> <span class="k">fun</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{}</span>        <span class="c1">// block body: return type is Unit and can&#39;t be changed accidentally, so not required</span></code></pre>
+<p>类，对象，接口，构造方法，和它们的setter方法都可以用_visibility modifiers_来做修饰。
+（getter 总与属性有着相同的可见性。）
+在Kotlin中有以下四个可见性修饰符：<code>private</code>、 <code>protected</code>、 <code>internal</code> 和 <code>public</code>。
+默认可见性如果没有显式指定修饰符的话是 <code>public</code>。</p>
 
 <p>下面将解释不同类型的声明范围。</p>
 
@@ -1102,18 +1082,11 @@
 <span class="k">class</span> <span class="nc">Bar</span> <span class="p">{}</span></code></pre>
 
 <ul>
-  <li>
-    <p>如果你不指定任何可见性修饰符，那么默认情况下使用<code>internal</code>修饰，这意味着你们将声明在同一个模块中可见;</p>
-  </li>
-  <li>
-    <p>如果你声明<code>private</code>，只会是这个包及其子包内可见的，并且只在相同的模块;</p>
-  </li>
-  <li>
-    <p>如果你声明<code>public</code>,随处可见。</p>
-  </li>
-  <li>
-    <p><code>protected</code>不适用于顶层声明。</p>
-  </li>
+  <li>如果你不指定任何可见性修饰符，那么默认情况下使用<code>public</code>修饰，这意味着你们将声明
+随处可见;</li>
+  <li>如果你声明<code>private</code>，只会在声明它的文件内可见；</li>
+  <li>如果你声明<code>internal</code>，它会在相同模块内随处可见；</li>
+  <li><code>protected</code>不适用于顶层声明。</li>
 </ul>
 
 <p>例子:</p>
@@ -1121,42 +1094,36 @@
 <pre><code class="code-block _highlighted lang_kotlin"><span class="c1">// file name: example.kt</span>
 <span class="k">package</span> <span class="nn">foo</span>
 
-<span class="k">private</span> <span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{}</span> <span class="c1">// visible inside this package and subpackaged</span>
+<span class="k">private</span> <span class="k">fun</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{}</span> <span class="c1">// visible inside example.kt</span>
 
 <span class="k">public</span> <span class="k">var</span> <span class="py">bar</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">5</span> <span class="c1">// property is visible everywhere</span>
-    <span class="k">private</span> <span class="k">set</span>         <span class="c1">// setter is visible only in this package and subpackages</span>
-
-<span class="k">internal</span> <span class="k">val</span> <span class="py">baz</span> <span class="p">=</span> <span class="m">6</span>    <span class="c1">// visible inside the same module, the modifier can be omitted    </span></code></pre>
+    <span class="k">private</span> <span class="k">set</span>         <span class="c1">// setter is visible only in example.kt</span>
+    
+<span class="k">internal</span> <span class="k">val</span> <span class="py">baz</span> <span class="p">=</span> <span class="m">6</span>    <span class="c1">// visible inside the same module</span></code></pre>
 
 <h2 id="section-2">类和接口<a href="#section-2" class="anchor"></a></h2>
 
 <p>当一个类中声明：</p>
 
 <ul>
-  <li>
-    <p><code>private</code> 意味着这个类只在内部可见(包含所有成员).</p>
-  </li>
-  <li>
-    <p><code>protected</code>— 和<code>private</code>一样+在子类可见。</p>
-  </li>
-  <li>
-    <p><code>internal</code> — 任何客户端 <em>inside this module</em> 谁看到声明类，其<code>internal</code>成员在里面;</p>
-  </li>
-  <li>
-    <p><code>public</code> —  任何客户端看到声明类看到其<code>public</code>成员。</p>
-  </li>
+  <li><code>private</code> 意味着这个类只在内部可见(包含所有成员).</li>
+  <li><code>protected</code>— 和<code>private</code>一样+在子类可见。</li>
+  <li><code>internal</code> — 任何客户端 <em>inside this module</em> 谁看到声明类，其<code>internal</code>成员在里面;</li>
+  <li><code>public</code> —  任何客户端看到声明类看到其<code>public</code>成员。</li>
 </ul>
 
 <p><em>注意</em> 对于Java用户:外部类不能访问Kotlin内部类的private成员。</p>
+
+<p>If you override a <code>protected</code> member and do not specify the visibility explicitly, the overriding member will also have <code>protected</code> visibility.</p>
 
 <p>例子:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">open</span> <span class="k">class</span> <span class="nc">Outer</span> <span class="p">{</span>
     <span class="k">private</span> <span class="k">val</span> <span class="py">a</span> <span class="p">=</span> <span class="m">1</span>
-    <span class="k">protected</span> <span class="k">val</span> <span class="py">b</span> <span class="p">=</span> <span class="m">2</span>
-    <span class="k">val</span> <span class="py">c</span> <span class="p">=</span> <span class="m">3</span> <span class="c1">// internal by default</span>
-    <span class="k">public</span> <span class="k">val</span> <span class="py">d</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">4</span> <span class="c1">// return type required</span>
-
+    <span class="k">protected</span> <span class="k">open</span> <span class="k">val</span> <span class="py">b</span> <span class="p">=</span> <span class="m">2</span>
+    <span class="k">internal</span> <span class="k">val</span> <span class="py">c</span> <span class="p">=</span> <span class="m">3</span>
+    <span class="k">val</span> <span class="py">d</span> <span class="p">=</span> <span class="m">4</span>  <span class="c1">// public by default</span>
+    
     <span class="k">protected</span> <span class="k">class</span> <span class="nc">Nested</span> <span class="p">{</span>
         <span class="k">public</span> <span class="k">val</span> <span class="py">e</span><span class="p">:</span> <span class="n">Int</span> <span class="p">=</span> <span class="m">5</span>
     <span class="p">}</span>
@@ -1166,21 +1133,26 @@
     <span class="c1">// a is not visible</span>
     <span class="c1">// b, c and d are visible</span>
     <span class="c1">// Nested and e are visible</span>
+
+    <span class="k">override</span> <span class="k">val</span> <span class="py">b</span> <span class="p">=</span> <span class="m">5</span>   <span class="c1">// &#39;b&#39; is protected</span>
 <span class="p">}</span>
 
 <span class="k">class</span> <span class="nc">Unrelated</span><span class="p">(</span><span class="n">o</span><span class="p">:</span> <span class="n">Outer</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// o.a, o.b are not visible</span>
     <span class="c1">// o.c and o.d are visible (same module)</span>
-    <span class="c1">// Outer.Nested is not visible, and Nested::e is not visible either</span>
+    <span class="c1">// Outer.Nested is not visible, and Nested::e is not visible either </span>
 <span class="p">}</span></code></pre>
 
 <h3 id="section-3">构造函数<a href="#section-3" class="anchor"></a></h3>
 
-<p>指定一个类的可见性的主构造函数,使用以下语法(注意你需要添加一个显示构造函数{:.keyword} keyword)：</p>
+<p>指定一个类的可见性的主构造函数,使用以下语法(注意你需要添加一个
+显式 <em>构造函数</em> {:.keyword} keyword)：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">class</span> <span class="nc">C</span> <span class="k">private</span> <span class="n">constructor</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span></code></pre>
 
-<p>这里的构造函数是私有的。不像其他的声明，在默认情况下，所有构造函数是<code>public</code>，这实际上等于他们是随处可见，其中的类是可见(即内部类的构造函数是唯一可见在同一模块内).</p>
+<p>这里的构造函数是私有的。不像其他的声明，在默认情况下，所有构造函数是<code>public</code>，这实际上
+等于他们是随处可见，其中的类是可见(即内部类的构造函数是唯一
+可见在同一模块内).</p>
 
 <h3 id="section-4">局部声明<a href="#section-4" class="anchor"></a></h3>
 

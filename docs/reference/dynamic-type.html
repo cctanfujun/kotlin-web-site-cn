@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1063,7 +1064,12 @@
 
         <h1 id="section">动态类型<a href="#section" class="anchor"></a></h1>
 
-<p>作为一个静态类型语言,Kotlin仍然可能会与无类型或者弱类型语言相互调用，比如JavaScript,为了这方面使用可以使用<code>dynamic</code>类型。</p>
+<blockquote class="note">
+  <p>The dynamic type is not supported in code targeting the JVM</p>
+</blockquote>
+
+<p>作为一个静态类型语言,Kotlin仍然可能会与无类型或者弱类型语言相互调用，
+比如JavaScript,为了这方面使用可以使用<code>dynamic</code>类型。</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">dyn</span><span class="p">:</span> <span class="n">dynamic</span> <span class="p">=</span> <span class="p">...</span></code></pre>
 
@@ -1075,12 +1081,14 @@
   <li>这样的值不<code>null</code>检查。</li>
 </ul>
 
-<p><code>dynamic</code>最奇特的特性就是可以在<code>dynamic</code>变量上调用<strong>任何</strong>属性或<strong>任何</strong>函数：</p>
+<p><code>dynamic</code>最奇特的特性就是可以在<code>dynamic</code>变量上调用<strong>任何</strong>属性或<strong>任何</strong>函数
+：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="n">dyn</span><span class="p">.</span><span class="n">whatever</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="n">dyn</span><span class="p">)</span> <span class="c1">// &#39;whatever&#39; is not defined anywhere</span>
 <span class="n">dyn</span><span class="p">.</span><span class="n">whatever</span><span class="p">(*</span><span class="n">arrayOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">))</span></code></pre>
 
-<p>在JavaScript平台这段代码被编译为”as is”: <code>dyn.whatever(1)</code>在Kotlin中<code>dyn.whatever(1)</code> 生成JavaScript 代码.</p>
+<p>在JavaScript平台这段代码被编译为”as is”: <code>dyn.whatever(1)</code>在Kotlin中<code>dyn.whatever(1)</code> 
+生成的 JavaScript 代码.</p>
 
 <p>动态调用返回<code>dynamic</code>作为结果，因此我们可以轻松实现链式调用：</p>
 

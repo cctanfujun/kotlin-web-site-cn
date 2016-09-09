@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 
-    <title>使用HttpServlet创建WEB应用 - Kotlin Programming Language</title>
+    <title>使用 Http Servlet 创建 Web 应用 - Kotlin Programming Language</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/kotlin-web-site-cn/assets/images/favicon.ico" type="image/x-icon"/>
@@ -21,21 +21,21 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="使用HttpServlet创建WEB应用" />
+<meta property="og:title" content="使用 Http Servlet 创建 Web 应用" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kotlinlang.org/docs/tutorials/httpservlets.html" />
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png" />
 
-<meta property="og:description" content="本教程通过使用HttpServlet创建一个简单的控制器来显示 Hello World。">
+<meta property="og:description" content="本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。">
 
 <meta property="og:site_name" content="Kotlin" />
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="使用HttpServlet创建WEB应用">
+<meta name="twitter:title" content="使用 Http Servlet 创建 Web 应用">
 
-<meta name="twitter:description" content="本教程通过使用HttpServlet创建一个简单的控制器来显示 Hello World。">
+<meta name="twitter:description" content="本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。">
 
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png ">
 <!-- Social Media tag Ends -->
@@ -143,6 +143,7 @@
         
     </div>
 </header>
+
 
     <div class="g-layout global-content">
         <div class="g-grid">
@@ -533,7 +534,7 @@
 </a>
 
         <h1>
-            使用HttpServlet创建WEB应用
+            使用 Http Servlet 创建 Web 应用
         </h1>
         <table>
             
@@ -542,7 +543,7 @@
                     <strong>Author</strong>
                 </td>
                 <td>
-                    biezhi
+                    Hadi Hariri
                 </td>
             </tr>
             
@@ -552,7 +553,7 @@
                     <strong>Last Updated</strong>
                 </td>
                 <td>
-                    30 December 2015
+                    1 November 2015
                 </td>
             </tr>
             
@@ -568,15 +569,16 @@
             
         </table>
         
-            本教程通过使用HttpServlet创建一个简单的控制器来显示 Hello World。
+            本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。
         <br/>
         <br/>
         
-        <p>JavaEE的HttpServlet可以使用Kotlin，就像使用其他的Java库或者框架一样。我们将看到如何让一个简单的控制器返回 “Hello, World!”</p>
+        <p>Kotlin 可以使用 JavaEE 的 Http Servlet，就像使用其他的 Java 库或者框架一样。我们将看到
+如何让一个简单的控制器返回 “Hello, World!”</p>
 
 <h3 id="section">定义项目和依赖关系<a href="#section" class="anchor"></a></h3>
-
-<p>在本教程中我们将使用Gradle进行构建，但同样可以实现使用IntelliJ IDEA项目结构或Maven的效果。关于如何使用Gradle配置Kotlin，请看<a href="http://tanfujun.com/docs/reference/using-gradle.html">使用Gradle</a>。HTTP servlet必须依赖 JAVAEE API:</p>
+<p>In this tutorial we’re going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.
+The main dependency required for using HTTP servlets is the JavaEE API:</p>
 
 <pre><code class="code-block _highlighted lang_groovy"><span class="n">dependencies</span> <span class="o">{</span>
     <span class="n">compile</span> <span class="nl">group:</span> <span class="s1">&#39;javax&#39;</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">&#39;javaee-api&#39;</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">&#39;7.0&#39;</span>
@@ -619,6 +621,7 @@
 <p>一旦我们运行应用程序(使用之前的配置)，成功部署，应该能够使用浏览器打开URL看到如下的响应:</p>
 
 <p><img src="http://kotlinlang.org/assets/images/tutorials/httpservlets/browser.png" alt="Browser Run" /></p>
+
 
     </article>
 </div>

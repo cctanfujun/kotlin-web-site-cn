@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1167,6 +1168,8 @@ Kotlin 更易于使用像 Jackson 或者 JPA 这样的通过无参构造函数�
 
 <p>注意 Kotlin 并没有 <em class="keyword">new</em> 关键字。</p>
 
+<p>Creating instances of nested, inner and anonymous inner classes is described in <a href="nested-classes.html">Nested classes</a>.</p>
+
 <h3 id="section-5">类成员<a href="#section-5" class="anchor"></a></h3>
 
 <p>类可以包含</p>
@@ -1236,6 +1239,20 @@ Kotlin 更易于使用像 Jackson 或者 JPA 这样的通过无参构造函数�
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">open</span> <span class="k">class</span> <span class="nc">AnotherDerived</span><span class="p">()</span> <span class="p">:</span> <span class="n">Base</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">final</span> <span class="k">override</span> <span class="k">fun</span> <span class="nf">v</span><span class="p">()</span> <span class="p">{}</span>
 <span class="p">}</span></code></pre>
+
+<p>Overriding properties works in a similar way to overriding methods.
+Note that you can use the <code>override</code> keyword as part of the property declaration in a primary constructor:</p>
+
+<pre><code class="code-block _highlighted lang_kotlin"><span class="k">open</span> <span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="k">open</span> <span class="k">val</span> <span class="py">x</span><span class="p">:</span> <span class="n">Int</span> <span class="k">get</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Bar1</span><span class="p">(</span><span class="k">override</span> <span class="k">val</span> <span class="py">x</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="p">:</span> <span class="n">Foo</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="p">}</span></code></pre>
+
+<p>You can also override a <code>val</code> property with a <code>var</code> property, but not vice versa.
+This is allowed because a <code>val</code> property essentially declares a getter method, and overriding it as a <code>var</code> additionally declares a setter method in the derived class.</p>
 
 <h4 id="hack">等等！这样我怎么hack我的库？</h4>
 

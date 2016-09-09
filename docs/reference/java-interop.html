@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -728,7 +729,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -826,7 +827,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1082,7 +1083,8 @@
 
 <h2 id="getters--setters">Getters 和 Setters<a href="#getters--setters" class="anchor"></a></h2>
 
-<p>若一个属性的getter/setter方法按照约定的规范进行命名(getter方法以<code>get</code>开头,不带参数/setter方法以<code>set</code>开头,带一个参数)，那么在Kotlin中可以直接对这个属性进行访问。如：</p>
+<p>若一个属性的getter/setter方法按照约定的规范进行命名(getter方法以<code>get</code>开头不带参数/setter方法以<code>set</code>开头
+带一个参数)，那么在Kotlin中可以直接对这个属性进行访问。如：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">import</span> <span class="nn">java.util.Calendar</span>
 
@@ -1152,11 +1154,24 @@
   <li><code>Array&lt;(out) T&gt;!</code> 表示 “<code>T</code>(或<code>T</code>的子类)的java数组，可空的或非空的”</li>
 </ul>
 
-<h3 id="section-1">空注解(标识是否可以为空)<a href="#section-1" class="anchor"></a></h3>
+<h3 id="section-1">可空性注解<a href="#section-1" class="anchor"></a></h3>
 
-<p>Java中被空注解符标注的类型，Kotlin会把它们当作nullable/non-null类型，而不是平台类型。目前，kotlin编译器支持<a href="https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html">JetBrains风格的注解</a>(<code>@Nullable</code>和<code>@NotNull</code>的定义可以在<code>org.jetbrains.annotations</code>包中找到)。</p>
+<p>Java types which have nullability annotations are represented not as platform types, but as actual nullable or non-null
+Kotlin types. The compiler supports several flavors of nullability annotations, including:</p>
 
-<h2 id="section-2">映射类型<a href="#section-2" class="anchor"></a></h2>
+<ul>
+  <li><a href="https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html">JetBrains</a>
+(<code>@Nullable</code> and <code>@NotNull</code> from the <code>org.jetbrains.annotations</code> package)</li>
+  <li>Android (<code>com.android.annotations</code> and <code>android.support.annotations</code>)</li>
+  <li>JSR-305 (<code>javax.annotation</code>)</li>
+  <li>FindBugs (<code>edu.umd.cs.findbugs.annotations</code>)</li>
+  <li>Eclipse (<code>org.eclipse.jdt.annotation</code>)</li>
+  <li>Lombok (<code>lombok.NonNull</code>).</li>
+</ul>
+
+<p>You can find the full list in the <a href="https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt">Kotlin compiler source code</a>.</p>
+
+<h2 id="section-2">已映射类型<a href="#section-2" class="anchor"></a></h2>
 
 <p>Kotlin特殊处理一部分java类型。这些类型不是通过as或is来直接转换，而是_映射_到了指定的kotlin类型上。
 映射只发生在编译期间，运行时仍然是原来的类型。
@@ -1366,26 +1381,13 @@ java的原生类型映射成如下kotlin类型（记得 <a href="#platform-types
 </ul>
 
 <p>和Java一样，Kotlin在运行时不保留泛型，即对象不知道传递到他们构造器中的那些参数的的实际类型。
-<del>Kotlin的范型就像Java一样不会在运行时保留信息，也就是对象不会携带传递到它们构造函数中的类型参数的信息。</del>
-<del>也就是说，运行时无法区分<code>ArrayList&lt;Integer&gt;()</code> 和 <code>ArrayList&lt;Character&gt;()</code>.</del>
 也就是，<code>ArrayList&lt;Integer&gt;()</code> 和 <code>ArrayList&lt;Character&gt;()</code> 是区分不出来的。
 这意味着，不可能用 <em class="keyword">is</em>-来检测泛型。
-<del>这就导致，无法使用<em class="keyword">is</em>-检测范型。</del>
-Kotlin只允许用<em class="keyword">is</em>-来检测星号投射的泛型类型:
-<del>Kotlin只允许用<em class="keyword">is</em>-检测星号投射的范型类型。</del></p>
+Kotlin只允许用<em class="keyword">is</em>-来检测星号投射的泛型类型:</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="k">is</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Int</span><span class="p">&gt;)</span> <span class="c1">// 错误: 不能检测是否是一个Int的List</span>
 <span class="c1">// but</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="k">is</span> <span class="n">List</span><span class="p">&lt;*&gt;)</span> <span class="c1">// 可以：不保证list里面的内容类型</span></code></pre>
-
-<blockquote>
-  <p>~~ ~~
-<code>kotlin
-if (a is List&lt;Int&gt;) // 错误: 无法检测是否是一个Int的List
-// but
-if (a is List&lt;*&gt;) // 可以: 不确保List里的内容
-</code></p>
-</blockquote>
 
 <h3 id="java">Java数组<a href="#java" class="anchor"></a></h3>
 
@@ -1452,7 +1454,9 @@ if (a is List&lt;*&gt;) // 可以: 不确保List里的内容
 
 <h2 id="section-3">操作符<a href="#section-3" class="anchor"></a></h2>
 
-<p>虽然Java不能自定义操作符重载，但Kotlin允许任意使用方法名合法的方法与标示符进行操作符重载，也可以自定义其它约定（如<code>invoke()</code>等）。但调用Java代码的时候，使用中缀语法(<code>infix call syntax</code>)是不被允许的。</p>
+<p>虽然Java不能自定义操作符重载，但Kotlin允许任意
+使用方法名合法的方法与标示符进行操作符重载，也可以自定义其它约定（如<code>invoke()</code>等）。
+但调用Java代码的时候，使用中缀语法(<code>infix call syntax</code>)是不被允许的。</p>
 
 <h2 id="section-4">受检异常<a href="#section-4" class="anchor"></a></h2>
 
@@ -1508,9 +1512,9 @@ if (a is List&lt;*&gt;) // 可以: 不确保List里的内容
   <span class="p">}</span>
 <span class="p">}</span></code></pre>
 
-<p>根据java的规则， <code>finalize()</code>不能为 <em class="keyword">private</em>。</p>
+<p>根据 Java 的规则， <code>finalize()</code>不能为 <em class="keyword">private</em>。</p>
 
-<h2 id="java-1">java类的继承<a href="#java-1" class="anchor"></a></h2>
+<h2 id="java-1">从 Java类的继承<a href="#java-1" class="anchor"></a></h2>
 
 <p>在kotlin里，超类里最多只能有一个java类(java接口数目不限)。这个java类必须放在超类列表的最前面。</p>
 

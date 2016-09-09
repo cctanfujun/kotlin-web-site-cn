@@ -144,6 +144,7 @@
     </div>
 </header>
 
+
     <div class="g-layout global-content">
         <div class="g-grid">
 
@@ -729,7 +730,7 @@
             
                 <a href="/kotlin-web-site-cn/docs/reference/null-safety.html"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-                   ><span class="marker"></span><span class="text">Null 安全性</span></a>
+                   ><span class="marker"></span><span class="text">空安全</span></a>
             
             </div>
         
@@ -827,7 +828,7 @@
 
             <div class="tree-item tree-leaf js-item js-leaf">
             
-                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/index.html"
+                <a href="/kotlin-web-site-cn/api/latest/jvm/stdlib/"
                    class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
                    ><span class="marker"></span><span class="text">API参考</span></a>
             
@@ -1044,7 +1045,7 @@
 
             <a href="https://raw.githubusercontent.com/cctanfujun/kotlin-web-site-cn/gh-pages/kotlin-docs.pdf" class="reference-pdf-link">
                 <span class="icon"></span>
-                <span class="text">Kotlin手册 中文版</span>
+                <span class="text">Kotlin 手册 中文版</span>
             </a>
         </div>
     </aside>
@@ -1105,11 +1106,13 @@
 <p>List 和 set 有很多有用的扩展方法值得熟悉：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">items</span> <span class="p">=</span> <span class="n">listOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">)</span>
-<span class="n">items</span><span class="p">.</span><span class="n">first</span> <span class="p">==</span> <span class="m">1</span>
-<span class="n">items</span><span class="p">.</span><span class="n">last</span> <span class="p">==</span> <span class="m">4</span>
+<span class="n">items</span><span class="p">.</span><span class="n">first</span><span class="p">()</span> <span class="p">==</span> <span class="m">1</span>
+<span class="n">items</span><span class="p">.</span><span class="n">last</span><span class="p">()</span> <span class="p">==</span> <span class="m">4</span>
 <span class="n">items</span><span class="p">.</span><span class="n">filter</span> <span class="p">{</span> <span class="n">it</span> <span class="p">%</span> <span class="m">2</span> <span class="p">==</span> <span class="m">0</span> <span class="p">}</span>   <span class="c1">// 返回 [2, 4]</span>
-<span class="n">rwList</span><span class="p">.</span><span class="n">requireNoNulls</span><span class="p">()</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">rwList</span><span class="p">.</span><span class="n">none</span> <span class="p">{</span> <span class="n">it</span> <span class="p">&gt;</span> <span class="m">6</span> <span class="p">})</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;No items above 6&quot;</span><span class="p">)</span>
+
+<span class="k">val</span> <span class="py">rwList</span> <span class="p">=</span> <span class="n">mutableListOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+<span class="n">rwList</span><span class="p">.</span><span class="n">requireNoNulls</span><span class="p">()</span>        <span class="c1">// returns [1, 2, 3]</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">rwList</span><span class="p">.</span><span class="n">none</span> <span class="p">{</span> <span class="n">it</span> <span class="p">&gt;</span> <span class="m">6</span> <span class="p">})</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;No items above 6&quot;</span><span class="p">)</span>  <span class="c1">// prints &quot;No items above 6&quot;</span>
 <span class="k">val</span> <span class="py">item</span> <span class="p">=</span> <span class="n">rwList</span><span class="p">.</span><span class="n">firstOrNull</span><span class="p">()</span></code></pre>
 
 <p>…… 以及所有你所期望的实用工具，例如 sort、zip、fold、reduce 等等。</p>
@@ -1117,7 +1120,7 @@
 <p>Map 遵循同样模式。它们可以容易地实例化和访问，像这样：</p>
 
 <pre><code class="code-block _highlighted lang_kotlin"><span class="k">val</span> <span class="py">readWriteMap</span> <span class="p">=</span> <span class="n">hashMapOf</span><span class="p">(</span><span class="s">&quot;foo&quot;</span> <span class="n">to</span> <span class="m">1</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span> <span class="n">to</span> <span class="m">2</span><span class="p">)</span>
-<span class="n">println</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="s">&quot;foo&quot;</span><span class="p">])</span>
+<span class="n">println</span><span class="p">(</span><span class="n">readWriteMap</span><span class="p">[</span><span class="s">&quot;foo&quot;</span><span class="p">])</span>  <span class="c1">// prints &quot;1&quot;</span>
 <span class="k">val</span> <span class="py">snapshot</span><span class="p">:</span> <span class="n">Map</span><span class="p">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Int</span><span class="p">&gt;</span> <span class="p">=</span> <span class="n">HashMap</span><span class="p">(</span><span class="n">readWriteMap</span><span class="p">)</span></code></pre>
 
     </article>
