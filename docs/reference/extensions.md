@@ -72,9 +72,8 @@ printFoo(D())
 This example will print "c", because the extension function being called depends only on the declared type of the
 parameter `c`, which is the `C` class.
 
-If a class has a member function, and an extension function is defined which has the same receiver type, the same name
-and is applicable to given arguments, the **member always wins**.
-For example:
+如果一个类有一个成员函数和一个扩展函数，而这两个函数又有相同的名字和参数列表，这时当一个对象调用时，**成员函数总会优先**. 
+如下：
 
 ``` kotlin
 class C {
