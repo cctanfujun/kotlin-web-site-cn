@@ -2,7 +2,7 @@
 
 网址（更新到 1.0.3）：[http://tanfujun.com/kotlin-web-site-cn/](http://tanfujun.com/kotlin-web-site-cn/)  
 
-中文站（更新到 1.1）：https://kotlin-zhcn.github.io/
+中文站（更新到 1.1）：https://www.kotlincn.net/
 
 > ~~说明：中文站是由[Jween](https://github.com/Jween)搭建在日本服务器上，感谢[Jween](https://github.com/Jween) 的服务器和域名支持~~
 > ~~他会定期将本项目翻译合入，所以有时会出现两个站点显示不一致的情况~~
