@@ -1,3 +1,20 @@
+# DEPRECATED
+
+中文站（更新到 1.1）：https://www.kotlincn.net/ 
+
+Kotlin 中文论坛：https://www.kotliner.cn/
+
+
+我们从 kotlin 0.4 版本翻译这个项目，非常感谢所有小伙伴做出的努力。kotlin 官网从 jekyll 改为 docker 由于工作原因一直没有时间维护，在此期间 灰蓝天际同学对这个项目做出了巨大贡献。
+
+kotlin 中文同步翻译跟进请移步这个库进行协作翻译：https://github.com/hltj/kotlin-web-site-cn
+
+欢迎加入Kotlin翻译小组(DEV kotlin translator group)   QQ群：419484222  
+
+欢迎关注我的微信公众号：晓晨Android组 微信号：xiaochenAndroid
+
+======
+
 # Kotlin中文站
 
 网址（更新到 1.0.3）：[http://tanfujun.com/kotlin-web-site-cn/](http://tanfujun.com/kotlin-web-site-cn/)  
@@ -6,10 +23,6 @@
 
 > ~~说明：中文站是由[Jween](https://github.com/Jween)搭建在日本服务器上，感谢[Jween](https://github.com/Jween) 的服务器和域名支持~~
 > ~~他会定期将本项目翻译合入，所以有时会出现两个站点显示不一致的情况~~
-
-欢迎加入Kotlin翻译小组(DEV kotlin translator group)   QQ群：419484222  
-
-欢迎关注我的微信公众号：晓晨Android组 微信号：xiaochenAndroid
 
 ## 翻译流程
 
